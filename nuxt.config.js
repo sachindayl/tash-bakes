@@ -7,39 +7,32 @@ export default {
     titleTemplate: '%s - Tash Bakes',
     title: 'tash-bakes',
     htmlAttrs: {
-      lang: 'en'
+      lang: 'en',
     },
     meta: [
       { charset: 'utf-8' },
       { name: 'viewport', content: 'width=device-width, initial-scale=1' },
-      { hid: 'description', name: 'description', content: '' }
+      { hid: 'description', name: 'description', content: '' },
     ],
-    link: [
-      { rel: 'icon', type: 'image/x-icon', href: '/favicon.ico' }
-    ]
+    link: [{ rel: 'icon', type: 'image/x-icon', href: '/favicon.ico' }],
   },
 
   // Global CSS: https://go.nuxtjs.dev/config-css
-  css: [
-  ],
+  css: [],
 
   // Plugins to run before rendering page: https://go.nuxtjs.dev/config-plugins
-  plugins: [
-  ],
+  plugins: [],
 
   components: true,
 
   buildModules: [
     '@nuxt/typescript-build',
     '@nuxtjs/tailwindcss',
-    '@nuxtjs/device'
+    '@nuxtjs/device',
   ],
 
   // Modules: https://go.nuxtjs.dev/config-modules
-  modules: [
-    '@nuxtjs/axios',
-    '@nuxtjs/firebase'
-  ],
+  modules: ['@nuxtjs/axios', '@nuxtjs/firebase'],
 
   firebase: {
     config: {
@@ -50,19 +43,22 @@ export default {
       messagingSenderId: '1092487134347',
       appId: '1:1092487134347:web:3a1a63bd9a69db2be3e88e',
       databaseURL: '',
-      measurementId: "G-E6V5M65S11"
+      measurementId: 'G-E6V5M65S11',
     },
     services: {
       analytics: true,
       onFirebaseHosting: true,
-      storage: true
-    }
+      storage: true,
+    },
   },
 
   // Axios module configuration: https://go.nuxtjs.dev/config-axios
   axios: {},
 
   // Build Configuration: https://go.nuxtjs.dev/config-build
-  build: {
-  }
+  build: {},
+
+  env: {
+    environ: process.env.NODE_ENV || 'development',
+  },
 }

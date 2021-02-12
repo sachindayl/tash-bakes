@@ -10,10 +10,10 @@
         </div>
       </div>
     </div>
-    <About></About>
+    <About id='about'></About>
     <Products></Products>
     <Testimonials></Testimonials>
-    <Contact></Contact>
+    <Contact id='contact'></Contact>
   </div>
 </template>
 

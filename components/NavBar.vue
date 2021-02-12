@@ -1,5 +1,5 @@
-<template xmlns='http://www.w3.org/1999/html'>
-  <nav class="bg-white dark:bg-gray-800 shadow">
+<template>
+  <nav class="z-40 fixed top-0 left-0 right-0 bg-white dark:bg-gray-800 shadow">
     <div class="mx-auto px-6 py-3 md:flex md:justify-between md:items-center">
       <div class="flex justify-between items-center">
         <div>
@@ -37,12 +37,12 @@
           >
           <a
             class="my-1 text-sm text-gray-700 dark:text-gray-200 font-medium hover:text-indigo-500 dark:hover:text-indigo-400 md:mx-4 md:my-0"
-            href="#"
+            href="#about"
             >About</a
           >
           <a
             class="my-1 text-sm text-gray-700 dark:text-gray-200 font-medium hover:text-indigo-500 dark:hover:text-indigo-400 md:mx-4 md:my-0"
-            href="#"
+            href="#contact"
             >Contact</a
           >
         </div>
