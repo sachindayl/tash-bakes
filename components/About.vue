@@ -1,13 +1,20 @@
 <template>
-  <section class="bg-white dark:bg-gray-800 p-12">
+  <section
+    class="bg-white dark:bg-gray-800 p-12 flex flex-col justify-center"
+    :style="heightStyle"
+  >
     <div class="container mx-auto px-6 py-8">
       <div class="lg:flex items-center">
         <div class="lg:w-1/2">
-          <h2 class="lg:max-w-md animate-wiggle text-center text-gray-800 dark:text-gray-100 text-3xl font-bold">
+          <h2
+            class="lg:max-w-md animate-wiggle text-center text-gray-800 dark:text-gray-100 text-3xl font-bold"
+          >
             About Me
           </h2>
 
-          <p class="text-justify text-gray-500 dark:text-gray-400 lg:max-w-md mt-4">
+          <p
+            class="text-justify text-gray-500 dark:text-gray-400 lg:max-w-md mt-4"
+          >
             Hi I am Hithasha, a radiology student , Lorem ipsum, dolor sit amet
             consectetur adipisicing elit. Illum in sed non alias, fugiat,
             commodi nemo ut fugit corrupti dolorem sequi ex veniam consequuntur
@@ -19,8 +26,8 @@
           <div class="flex items-center justify-center lg:justify-end">
             <div class="max-w-lg">
               <img
-                class="w-full h-64 object-cover object-center rounded-md shadow"
-                src="https://images.unsplash.com/photo-1484399172022-72a90b12e3c1?ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=1500&q=80"
+                class="w-full h-64 object-contain object-center rounded-md shadow"
+                :src="imageUrl"
                 alt=""
               />
             </div>
@@ -33,9 +40,30 @@
 
 <script lang="ts">
 import { Component, Vue } from 'nuxt-property-decorator'
+import { FirebaseService } from '~/services/FirebaseService'
 
 @Component
-export default class About extends Vue {}
+export default class About extends Vue {
+  imageUrl = ''
+  async mounted() {
+    await this.retrieveImage()
+  }
+
+  get heightStyle() {
+    if (process.client) {
+      const width = window.innerWidth
+      return width < 600 ? 'height: 700px' : 'height: 500px'
+    }
+    return ''
+  }
+
+  async retrieveImage() {
+    this.imageUrl = await new FirebaseService(this.$fire).retrieveImage(
+      'testimonials',
+      'IMG_7659.jpg'
+    )
+  }
+}
 </script>
 
 <style scoped></style>

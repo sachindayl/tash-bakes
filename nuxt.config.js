@@ -37,9 +37,27 @@ export default {
 
   // Modules: https://go.nuxtjs.dev/config-modules
   modules: [
-    // https://go.nuxtjs.dev/axios
     '@nuxtjs/axios',
+    '@nuxtjs/firebase'
   ],
+
+  firebase: {
+    config: {
+      apiKey: 'AIzaSyCYuCcjXBbcI_eJEe-ybD3RJvxgnqEb98E',
+      authDomain: 'tasha-bakes.firebaseapp.com',
+      projectId: 'tasha-bakes',
+      storageBucket: 'tasha-bakes.appspot.com',
+      messagingSenderId: '1092487134347',
+      appId: '1:1092487134347:web:3a1a63bd9a69db2be3e88e',
+      databaseURL: '',
+      measurementId: "G-E6V5M65S11"
+    },
+    services: {
+      analytics: true,
+      onFirebaseHosting: true,
+      storage: true
+    }
+  },
 
   // Axios module configuration: https://go.nuxtjs.dev/config-axios
   axios: {},

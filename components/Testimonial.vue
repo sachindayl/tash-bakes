@@ -4,9 +4,9 @@
   >
     <div class="flex justify-center -mt-16 md:justify-end">
       <img
-        class="object-cover w-20 h-20 border-2 border-indigo-500 rounded-full dark:border-indigo-400"
+        class="object-cover w-20 h-20 border-2 border-orange-500 rounded-full dark:border-orange-400"
         alt="Testimonial avatar"
-        :src="testimonial.image"
+        :src="imageUrl"
       />
     </div>
 
@@ -23,7 +23,7 @@
     <div class="flex justify-end mt-4">
       <a
         href="#"
-        class="text-xl font-medium text-indigo-500 dark:text-indigo-300"
+        class="text-xl font-medium text-orange-500 dark:text-orange-300"
         >{{ testimonial.customerName }}</a
       >
     </div>
@@ -33,6 +33,7 @@
 <script lang="ts">
 import { Component, PropSync, Vue } from 'nuxt-property-decorator'
 import { TestimonialI } from '~/pages/index.vue'
+import { FirebaseService } from '~/services/FirebaseService'
 
 @Component
 export default class Testimonial extends Vue {
@@ -40,6 +41,24 @@ export default class Testimonial extends Vue {
     type: Object as () => TestimonialI,
   })
   readonly testimonial!: TestimonialI
+  imageUrl = ''
+
+  async mounted() {
+    await this.retrieveImageUrl()
+  }
+
+  async retrieveImageUrl() {
+    if (process.client) {
+      console.log(JSON.stringify(this.testimonial.image))
+      const firebaseService = new FirebaseService(this.$fire)
+      const image = await firebaseService.retrieveImage(
+        'testimonials',
+        this.testimonial.image
+      )
+      console.log(JSON.stringify(image))
+      this.imageUrl = image
+    }
+  }
 }
 </script>
 

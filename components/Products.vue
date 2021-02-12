@@ -1,43 +1,55 @@
 <template>
-  <div class=' flex justify-center flex-col text-center'>
-    <div
-      class="w-64 md:w-128 h-32 md:h-64 bg-gray-300 bg-center bg-cover rounded-lg shadow-md"
-      :style="backgroundImage"
-    ></div>
-
-    <div
-      class="w-56 -mt-10 mx-auto justify-center overflow-hidden bg-white rounded-lg shadow-lg md:w-64 dark:bg-gray-800"
-    >
-      <h3
-        class="py-2 font-bold tracking-wide text-center text-gray-800 uppercase dark:text-white"
-      >
-        {{ products.name }}
-      </h3>
-
+  <section>
+    <div class="mx-auto my-4">
       <div
-        class="flex items-center justify-center px-3 py-2 bg-gray-200 dark:bg-gray-700"
+        class="w-full bg-fixed bg-auto content-center flex flex-col justify-center items-center"
+        :style="backgroundImage"
       >
-        <span class="font-bold text-gray-800 dark:text-gray-200">Starting from {{
-          products.price
-        }}</span>
+        <h2
+          class="animate-wiggle p-4 pb-12 text-3xl font-semibold text-center text-white dark:text-black"
+        >
+          Our Products
+        </h2>
+        <div
+          class="flex flex-col md:flex-row items-center justify-center max-w-sm mx-auto gap-12"
+        >
+          <div v-for="product in products">
+            <Product :products-data.sync="product"></Product>
+          </div>
+        </div>
       </div>
     </div>
-  </div>
+  </section>
 </template>
 
 <script lang="ts">
-import { Component, Vue, PropSync } from 'nuxt-property-decorator'
-import { ProductI } from '~/pages/index.vue'
+import { Component, Vue } from 'nuxt-property-decorator'
+import { ProductI } from '../pages/index.vue'
 
 @Component
 export default class Products extends Vue {
-  @PropSync('productsData', {
-    type: Object as () => ProductI,
-  })
-  readonly products!: ProductI
-
   get backgroundImage() {
-    return `backgroundImage: url(${this.products.url})`
+    if (process.client) {
+      return `backgroundImage: url(https://images.unsplash.com/photo-1603532553059-3facb851d937?ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=960&q=80); height: 700px; opacity: 0.75;`
+    }
+    return ''
+  }
+
+  get products(): ProductI[] {
+    return [
+      {
+        name: 'Cupcakes',
+        url:
+          'https://images.unsplash.com/photo-1599785209796-786432b228bc?ixlib=rb-1.2.1&ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&auto=format&fit=crop&w=800&q=80',
+        price: '$25',
+      },
+      {
+        name: 'Cakes',
+        url:
+          'https://images.unsplash.com/photo-1578985545062-69928b1d9587?ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&ixlib=rb-1.2.1&ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&auto=format&fit=crop&w=800&q=80',
+        price: '$60',
+      },
+    ]
   }
 }
 </script>

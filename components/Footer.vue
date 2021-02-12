@@ -9,7 +9,10 @@
     >
 
     <p class="py-2 text-gray-800 dark:text-white sm:py-0">
-      Technomate Software
+      <span>&copy; {{ new Date().getFullYear() }}</span>
+      <a class='underline text-blue-600' href="https://technomatesoftware.com" target="_blank"
+        >Technomate Software</a
+      >
     </p>
 
     <div class="flex -mx-2">

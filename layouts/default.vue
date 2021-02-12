@@ -5,7 +5,18 @@
     <Footer class='pt-2'></Footer>
   </div>
 </template>
+<script lang='ts'>
+import { Component, Vue } from 'nuxt-property-decorator'
 
+@Component
+export default class Default extends Vue {
+  mounted() {
+    if(process.client) {
+      this.$fire.analytics;
+    }
+  }
+}
+</script>
 <style>
 html {
   font-family: 'Source Sans Pro', -apple-system, BlinkMacSystemFont, 'Segoe UI',
