@@ -19,7 +19,7 @@
       <div class="grid grid-cols-1 gap-6 mt-6 sm:grid-cols-2 md:grid-cols-3">
         <a
           href="#"
-          class="flex flex-col items-center px-4 py-3 text-gray-700 rounded-md dark:text-gray-200 hover:bg-blue-200 dark:hover:bg-blue-500"
+          class="flex flex-col items-center px-4 py-3 text-gray-700 rounded-md dark:text-gray-200"
         >
           <svg
             class="w-5 h-5"
@@ -34,12 +34,12 @@
             />
           </svg>
 
-          <span class="mt-2">121 Street, NY</span>
+          <span class="mt-2">71, Maitland St</span>
         </a>
 
         <a
           href="#"
-          class="flex flex-col items-center px-4 py-3 text-gray-700 rounded-md dark:text-gray-200 hover:bg-blue-200 dark:hover:bg-blue-500"
+          class="flex flex-col items-center px-4 py-3 text-gray-700 rounded-md dark:text-gray-200"
         >
           <svg
             class="w-5 h-5"
@@ -57,7 +57,7 @@
 
         <a
           href="#"
-          class="flex flex-col items-center px-4 py-3 text-gray-700 rounded-md dark:text-gray-200 hover:bg-blue-200 dark:hover:bg-blue-500"
+          class="flex flex-col items-center px-4 py-3 text-gray-700 rounded-md dark:text-gray-200"
         >
           <svg
             class="w-5 h-5"
@@ -86,6 +86,7 @@
             <input
               class="block w-full px-4 py-2 text-gray-700 bg-white border border-gray-300 rounded dark:bg-gray-800 dark:text-gray-300 dark:border-gray-600 focus:border-blue-500 dark:focus:border-blue-500 focus:outline-none focus:ring"
               type="text"
+              v-model="newMessage.name"
             />
           </div>
 
@@ -98,6 +99,7 @@
             <input
               class="block w-full px-4 py-2 text-gray-700 bg-white border border-gray-300 rounded dark:bg-gray-800 dark:text-gray-300 dark:border-gray-600 focus:border-blue-500 dark:focus:border-blue-500 focus:outline-none focus:ring"
               type="number"
+              v-model="newMessage.phoneNumber"
             />
           </div>
 
@@ -110,6 +112,7 @@
             <input
               class="block w-full px-4 py-2 text-gray-700 bg-white border border-gray-300 rounded dark:bg-gray-800 dark:text-gray-300 dark:border-gray-600 focus:border-blue-500 dark:focus:border-blue-500 focus:outline-none focus:ring"
               type="email"
+              v-model="newMessage.email"
             />
           </div>
         </div>
@@ -120,26 +123,48 @@
             >Message</label
           ><textarea
             class="block w-full h-40 px-4 py-2 text-gray-700 bg-white border border-gray-300 rounded dark:bg-gray-800 dark:text-gray-300 dark:border-gray-600 focus:border-blue-500 dark:focus:border-blue-500 focus:outline-none focus:ring"
+            v-model="newMessage.message"
           ></textarea>
         </div>
 
         <div class="flex justify-center mt-6">
           <button
             class="px-4 py-2 text-white transition-colors duration-200 transform bg-gray-700 rounded hover:bg-gray-600 focus:outline-none focus:bg-gray-600"
+            @click="validateAndSendMessage"
           >
             Send Message
           </button>
         </div>
       </div>
+      <SuccessAlert
+        class="m-4"
+        :success-alert-data.sync="dialog"
+      ></SuccessAlert>
     </section>
   </div>
 </template>
 
 <script lang="ts">
 import { Component, Vue } from 'nuxt-property-decorator'
+import { EmailService } from '~/services/EmailService'
+
+export interface MessageI {
+  name: string
+  phoneNumber: string
+  email: string
+  message: string
+}
 
 @Component
 export default class Contact extends Vue {
+  newMessage: MessageI = {
+    name: '',
+    phoneNumber: '',
+    email: '',
+    message: '',
+  }
+  dialog = false
+
   get backgroundImage() {
     if (process.client) {
       const width = window.innerWidth
@@ -148,6 +173,13 @@ export default class Contact extends Vue {
         : `backgroundImage: url(https://images.unsplash.com/photo-1534536281715-e28d76689b4d?ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1600&q=80); height: 700px; opacity: 0.75;`
     }
     return ''
+  }
+
+  async validateAndSendMessage() {
+    const response = await new EmailService().sendEmail(this.newMessage)
+    if (response.status == 200) {
+      this.dialog = true
+    }
   }
 }
 </script>

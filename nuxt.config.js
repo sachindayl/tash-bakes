@@ -60,5 +60,8 @@ export default {
 
   env: {
     environ: process.env.NODE_ENV || 'development',
+    serviceId: 'service_va9yyy8',
+    templateId: 'template_3tl879f',
+    userId: 'user_49xVOX2trBOy3FkIZpaWa'
   },
 }
