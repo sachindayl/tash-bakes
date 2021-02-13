@@ -26,7 +26,7 @@
           <div class="flex items-center justify-center lg:justify-end">
             <div class="max-w-lg">
               <img
-                class="w-full h-64 object-contain object-center rounded-md shadow"
+                class="w-full h-64 object-cover object-center rounded-md shadow"
                 :src="imageUrl"
                 alt=""
               />

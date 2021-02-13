@@ -30,7 +30,7 @@ import { ProductI } from '../pages/index.vue'
 export default class Products extends Vue {
   get backgroundImage() {
     if (process.client) {
-      return `backgroundImage: url(https://images.unsplash.com/photo-1603532553059-3facb851d937?ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=960&q=80); height: 700px; opacity: 0.75;`
+      return `backgroundImage: url(https://images.unsplash.com/photo-1603532553059-3facb851d937?ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=auto&q=80); height: 700px; opacity: 0.75;`
     }
     return ''
   }

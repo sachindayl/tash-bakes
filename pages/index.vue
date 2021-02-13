@@ -39,7 +39,7 @@ export default class Index extends Vue {
     if (process.client) {
       const width = window.innerWidth
       return {
-        intro: `backgroundImage: url(https://images.unsplash.com/photo-1602630724200-54205d5bffa8?ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=2100&q=80);height: 700px;`,
+        intro: `backgroundImage: url(https://images.unsplash.com/photo-1486427944299-d1955d23e34d?ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=cover&w=1600&q=80);height: 700px;`,
       }
     }
     return {}
