@@ -32,7 +32,7 @@ export default {
   ],
 
   // Modules: https://go.nuxtjs.dev/config-modules
-  modules: ['@nuxtjs/axios', '@nuxtjs/firebase'],
+  modules: ['@nuxtjs/axios', '@nuxtjs/firebase', 'vue-scrollto/nuxt'],
 
   firebase: {
     config: {
@@ -62,6 +62,6 @@ export default {
     environ: process.env.NODE_ENV || 'development',
     serviceId: 'service_va9yyy8',
     templateId: 'template_3tl879f',
-    userId: 'user_49xVOX2trBOy3FkIZpaWa'
+    userId: 'user_49xVOX2trBOy3FkIZpaWa',
   },
 }

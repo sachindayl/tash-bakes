@@ -1,6 +1,6 @@
 <template>
   <div class="main-container">
-    <div class="mx-auto pb-4">
+    <div id="home" class="mx-auto pb-4">
       <div
         class="w-full bg-fixed bg-auto flex content-center justify-center flex-wrap"
         :style="backgroundImage.intro"
@@ -10,10 +10,10 @@
         </div>
       </div>
     </div>
-    <About  id='about'></About>
+    <About id="about"></About>
     <Products></Products>
     <Testimonials></Testimonials>
-    <Contact id='contact'></Contact>
+    <Contact id="contact"></Contact>
   </div>
 </template>
 
@@ -35,6 +35,7 @@ export interface TestimonialI {
 
 @Component
 export default class Index extends Vue {
+
   get backgroundImage() {
     if (process.client) {
       const width = window.innerWidth
