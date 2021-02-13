@@ -49,14 +49,11 @@ export default class Testimonial extends Vue {
 
   async retrieveImageUrl() {
     if (process.client) {
-      console.log(JSON.stringify(this.testimonial.image))
       const firebaseService = new FirebaseService(this.$fire)
-      const image = await firebaseService.retrieveImage(
+      this.imageUrl = await firebaseService.retrieveImage(
         'testimonials',
         this.testimonial.image
       )
-      console.log(JSON.stringify(image))
-      this.imageUrl = image
     }
   }
 }

@@ -1,5 +1,5 @@
 <template>
-  <div class="flex justify-center flex-col text-center">
+  <div class="flex justify-center flex-col text-center p-4">
     <div
       class="h-32 md:h-64 bg-gray-300 bg-center bg-cover rounded-lg shadow-md"
       :style="backgroundImage"

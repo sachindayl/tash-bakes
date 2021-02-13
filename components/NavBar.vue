@@ -16,6 +16,7 @@
             type="button"
             class="text-gray-500 dark:text-gray-200 hover:text-gray-600 dark:hover:text-gray-400 focus:outline-none focus:text-gray-600 dark:focus:text-gray-400"
             aria-label="toggle menu"
+            @click="updateMenuVisibility"
           >
             <svg viewBox="0 0 24 24" class="h-6 w-6 fill-current">
               <path
@@ -28,7 +29,8 @@
       </div>
 
       <!-- Mobile Menu open: "block", Menu closed: "hidden" -->
-      <div class="md:flex items-center">
+
+      <div class="md:flex items-center" v-if="menuItemsVisible">
         <div class="flex flex-col md:flex-row md:mx-6">
           <a
             class="my-1 text-sm text-gray-700 dark:text-gray-200 font-medium hover:text-indigo-500 dark:hover:text-indigo-400 md:mx-4 md:my-0"
@@ -56,11 +58,24 @@ import { Component, Vue } from 'nuxt-property-decorator'
 
 @Component
 export default class Header extends Vue {
-  isVisible = false
+  menuItemsVisible = false
 
-  // get isMobile() {
-  //   return this.
-  // }
+  mounted() {
+    if (process.client) {
+      this.navBarVisibility()
+    }
+  }
+
+  private navBarVisibility() {
+    const width = window.innerWidth
+    this.menuItemsVisible = width >= 640
+    console.log(this.menuItemsVisible)
+  }
+
+  private updateMenuVisibility() {
+    console.log('clicked')
+    this.menuItemsVisible = !this.menuItemsVisible
+  }
 }
 </script>
 

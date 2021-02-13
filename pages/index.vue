@@ -10,7 +10,7 @@
         </div>
       </div>
     </div>
-    <About id='about'></About>
+    <About  id='about'></About>
     <Products></Products>
     <Testimonials></Testimonials>
     <Contact id='contact'></Contact>
