@@ -7,7 +7,7 @@
       class="w-full max-w-2xl px-6 py-4 mx-auto bg-gray-100 rounded-md shadow-md dark:bg-gray-800 p-16 m-4"
     >
       <h2
-        class="animate-wiggle text-3xl font-semibold text-center text-gray-800 dark:text-white"
+        class='subs-title animate-wiggle text-3xl font-semibold text-center text-gray-800 dark:text-white'
       >
         Get in touch
       </h2>

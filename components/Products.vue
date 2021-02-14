@@ -5,11 +5,11 @@
         class="w-full bg-fixed bg-auto content-center flex flex-col justify-center items-center"
         :style="backgroundImage"
       >
-        <h2
-          class="animate-wiggle p-4 pb-12 text-3xl font-semibold text-center text-white dark:text-black"
+        <div
+          class='subs-title-white animate-wiggle p-4 pb-12 text-5xl text-center text-white'
         >
-          Our Products
-        </h2>
+          Products
+        </div>
         <div
           class="flex flex-col md:flex-row items-center justify-center max-w-sm mx-auto gap-12"
         >

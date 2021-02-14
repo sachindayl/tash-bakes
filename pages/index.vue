@@ -2,11 +2,14 @@
   <div class="main-container">
     <div id="home" class="mx-auto pb-4">
       <div
-        class="w-full bg-fixed bg-auto flex content-center justify-center flex-wrap"
+        class="w-full bg-fixed bg-auto flex flex-col content-center justify-center flex-wrap"
         :style="backgroundImage.intro"
       >
-        <div class="animate-bounce text-5xl text-center text-white">
+        <div class="heading animate-bounce text-center text-white">
           Tash Bakes
+        </div>
+        <div class="-mt-8 text-lg md:text-xl text-center text-white">
+          Making you smile one cupcake at a time.
         </div>
       </div>
     </div>
@@ -35,7 +38,6 @@ export interface TestimonialI {
 
 @Component
 export default class Index extends Vue {
-
   get backgroundImage() {
     if (process.client) {
       const width = window.innerWidth
@@ -73,7 +75,7 @@ export default class Index extends Vue {
   letter-spacing: 1px;
 }
 
-.subtitle {
+.second-title {
   font-weight: 300;
   font-size: 42px;
   color: #526488;
@@ -83,5 +85,61 @@ export default class Index extends Vue {
 
 .links {
   padding-top: 15px;
+}
+
+.heading {
+  font-family: 'Playball', cursive;
+  font-size: 96px;
+}
+
+@media only screen and (max-width: 600px) {
+  .heading {
+    font-size: 64px;
+  }
+}
+
+.navbar-heading {
+  font-family: 'Playball', cursive;
+  font-size: 28px;
+}
+
+@media only screen and (max-width: 600px) {
+  .navbar-heading {
+    font-size: 24px;
+  }
+}
+
+.footer-heading {
+  font-family: 'Playball', cursive;
+  font-size: 24px;
+}
+
+@media only screen and (max-width: 600px) {
+  .footer-heading {
+    font-size: 20px;
+  }
+}
+
+.subs-title {
+  font-family: 'Playball', cursive;
+  font-size: 48px;
+}
+
+@media only screen and (max-width: 600px) {
+  .subs-title {
+    font-size: 36px;
+  }
+}
+
+.subs-title-white {
+  font-family: 'Playball', cursive;
+  font-size: 48px;
+  color: white !important;
+}
+
+@media only screen and (max-width: 600px) {
+  .subs-title-white {
+    font-size: 36px;
+  }
 }
 </style>

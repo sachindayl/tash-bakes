@@ -4,7 +4,7 @@
       <div class="flex justify-between items-center">
         <div>
           <a
-            class="text-gray-800 dark:text-white text-xl font-bold md:text-2xl hover:text-gray-700 dark:hover:text-gray-300"
+            class="navbar-heading text-gray-800 dark:text-white text-xl font-bold md:text-2xl hover:text-gray-700 dark:hover:text-gray-300"
             href="#"
             >Tash Bakes</a
           >

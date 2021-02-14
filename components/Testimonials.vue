@@ -4,7 +4,7 @@
     :style="heightStyle"
   >
     <h2
-      class="animate-wiggle p-4 pb-12 text-3xl font-semibold text-center text-gray-800 dark:text-white"
+      class='subs-title animate-wiggle p-4 pb-12 text-3xl font-semibold text-center text-gray-800 dark:text-white'
     >
       Testimonials
     </h2>

@@ -4,7 +4,7 @@
   >
     <a
       href="#"
-      class="text-xl font-bold text-gray-800 dark:text-white hover:text-gray-700 dark:hover:text-gray-300"
+      class="footer-heading"
       >Tash Bakes</a
     >
 

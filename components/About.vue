@@ -7,7 +7,7 @@
       <div class="lg:flex items-center">
         <div class="lg:w-1/2">
           <h2
-            class="lg:max-w-md animate-wiggle text-center text-gray-800 dark:text-gray-100 text-3xl font-bold"
+            class='subs-title lg:max-w-md animate-wiggle text-center text-gray-800 dark:text-gray-100 text-3xl font-bold'
           >
             About Me
           </h2>
