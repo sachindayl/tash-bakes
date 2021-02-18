@@ -25,7 +25,7 @@ import { Component, Vue } from 'nuxt-property-decorator'
 
 export interface ProductI {
   name: string
-  url: string
+  image: string
   price: string
 }
 

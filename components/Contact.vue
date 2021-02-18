@@ -34,7 +34,7 @@
             />
           </svg>
 
-          <span class="mt-2">71, Maitland St</span>
+          <span class="mt-2">Huron Village, Kitchener, ON</span>
         </a>
 
         <a

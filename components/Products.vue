@@ -6,7 +6,7 @@
         :style="backgroundImage"
       >
         <div
-          class='subs-title-white animate-wiggle p-4 pb-12 text-5xl text-center text-white'
+          class="subs-title-white animate-wiggle p-4 pb-12 text-5xl text-center text-white"
         >
           Products
         </div>
@@ -30,7 +30,7 @@ import { ProductI } from '../pages/index.vue'
 export default class Products extends Vue {
   get backgroundImage() {
     if (process.client) {
-      return `backgroundImage: url(https://images.unsplash.com/photo-1603532553059-3facb851d937?ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=auto&q=80); height: 700px; opacity: 0.75;`
+      return `backgroundImage: url(https://images.unsplash.com/photo-1603532553059-3facb851d937?ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=auto&q=80); height: 700px; opacity: 0.85;`
     }
     return ''
   }
@@ -39,14 +39,12 @@ export default class Products extends Vue {
     return [
       {
         name: 'Cupcakes',
-        url:
-          'https://images.unsplash.com/photo-1599785209796-786432b228bc?ixlib=rb-1.2.1&ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&auto=format&fit=crop&w=800&q=80',
+        image: 'IMG_4826_1.jpg',
         price: '$25',
       },
       {
         name: 'Cakes',
-        url:
-          'https://images.unsplash.com/photo-1578985545062-69928b1d9587?ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&ixlib=rb-1.2.1&ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&auto=format&fit=crop&w=800&q=80',
+        image: 'IMG_5208_2.jpg',
         price: '$60',
       },
     ]
