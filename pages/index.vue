@@ -2,19 +2,17 @@
   <div class="main-container">
     <div id="home" class="mx-auto pb-4">
       <div
-        class="w-full bg-fixed bg-auto flex flex-col content-center justify-center flex-wrap"
+        class="w-full bg-fixed flex flex-col justify-center object-center py-24"
         :style="backgroundImage.intro"
       >
-        <div class="heading animate-bounce text-center text-white">
-          Tash Bakes
-        </div>
-        <div class="-mt-8 text-lg md:text-xl text-center text-white">
+        <div :class="titleStyle">Bakes by Tash</div>
+        <div :class="subtitleStyle">
           Making you smile one cupcake at a time.
         </div>
       </div>
     </div>
     <About id="about"></About>
-    <Products></Products>
+    <Products class="mb-10"></Products>
     <Testimonials></Testimonials>
     <Contact id="contact"></Contact>
   </div>
@@ -22,6 +20,7 @@
 
 <script lang="ts">
 import { Component, Vue } from 'nuxt-property-decorator'
+import { FirebaseService } from '~/services/FirebaseService'
 
 export interface ProductI {
   name: string
@@ -38,12 +37,33 @@ export interface TestimonialI {
 
 @Component
 export default class Index extends Vue {
+  imageUrl = ''
+  titleStyle = 'heading animate-bounce text-center'
+  subtitleStyle = '-mt-8 text-lg md:text-xl font-semibold text-center'
+
+  async mounted() {
+    await this.retrieveImageUrl()
+  }
+
+  async retrieveImageUrl() {
+    if (process.client) {
+      const firebaseService = new FirebaseService(this.$fire)
+      this.imageUrl = await firebaseService.retrieveImage(
+        'gallery',
+        'IMG_3782_4.jpg'
+      )
+    }
+  }
+
   get backgroundImage() {
     if (process.client) {
-      const width = window.innerWidth
-      return {
-        intro: `backgroundImage: url(https://images.unsplash.com/photo-1486427944299-d1955d23e34d?ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=cover&w=1600&q=80);height: 700px;`,
+      const image = {
+        intro: `backgroundImage: url(${this.imageUrl});height: 700px; background-repeat: no-repeat; width:100%;`,
       }
+      this.titleStyle = 'heading animate-bounce text-center text-white'
+      this.subtitleStyle =
+        '-mt-8 text-lg md:text-xl font-semibold text-center text-white'
+      return image
     }
     return {}
   }

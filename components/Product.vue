@@ -1,10 +1,11 @@
 <template>
   <div class="flex justify-center flex-col text-center p-4">
-    <div class='w-64 md:w-128  bg-gray-300 rounded-lg object-cover'
-    >
+    <div class="w-64 md:w-128 bg-gray-300 rounded-lg object-cover">
       <img
-        class='bg-center h-32 w-64 md:w-128  md:h-64 object-cover rounded-lg shadow-md'
-        :src="imageUrl" alt="product image" />
+        class="bg-center h-32 w-64 md:w-128 md:h-64 object-cover rounded-lg shadow-md"
+        :src="imageUrl"
+        alt="product image"
+      />
     </div>
 
     <div
@@ -38,19 +39,23 @@ export default class Product extends Vue {
     type: Object as () => ProductI,
   })
   readonly product!: ProductI
-  imageUrl = ''
 
-  mounted() {
-    this.retrieveImageUrl()
+  imageUrl = require('assets/placeholder.png')
+
+  async mounted() {
+    if (process.client) {
+      await this.retrieveImageUrl()
+    }
   }
 
   async retrieveImageUrl() {
     if (process.client) {
-      const firebaseService = new FirebaseService(this.$fire)
-      this.imageUrl = await firebaseService.retrieveImage(
-        'gallery',
-        this.product.image
-      )
+      const firebaseImageUrl = await new FirebaseService(
+        this.$fire
+      ).retrieveImage('gallery', this.product.image)
+      if (firebaseImageUrl !== '' && firebaseImageUrl != undefined) {
+        this.imageUrl = firebaseImageUrl
+      }
     }
   }
 }

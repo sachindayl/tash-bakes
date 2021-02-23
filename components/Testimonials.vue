@@ -1,6 +1,6 @@
 <template>
   <section
-    class="md:mb-24 md:mb-6 md:p-4 py-12 flex flex-col justify-center"
+    class="md:mb-24 mt-12 my-6 md:p-4 py-12 flex flex-col justify-center"
     :style="heightStyle"
   >
     <h2

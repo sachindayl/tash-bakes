@@ -38,7 +38,7 @@ export default {
   ],
 
   // Modules: https://go.nuxtjs.dev/config-modules
-  modules: ['@nuxtjs/axios', '@nuxtjs/firebase', 'vue-scrollto/nuxt'],
+  modules: ['@nuxtjs/axios', '@nuxtjs/firebase', ['vue-scrollto/nuxt', { duration: 500, offset: -100 }]],
 
   firebase: {
     config: {
