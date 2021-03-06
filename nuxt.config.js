@@ -2,6 +2,7 @@ export default {
   // Target: https://go.nuxtjs.dev/config-target
   target: 'static',
 
+
   // Global page headers: https://go.nuxtjs.dev/config-head
   head: {
     titleTemplate: '%s - Tash Bakes',
@@ -20,6 +21,10 @@ export default {
         rel: 'stylesheet',
         href: 'https://fonts.googleapis.com/css2?family=Playball&display=swap',
       },
+      {
+        rel: 'preconnect',
+        href: 'https://firebase.googleapis.com'
+      }
     ],
   },
 
@@ -27,7 +32,7 @@ export default {
   css: [],
 
   // Plugins to run before rendering page: https://go.nuxtjs.dev/config-plugins
-  plugins: [],
+  plugins: [{ src: "~/plugins/vue-fb-customer-chat.js", ssr: false }],
 
   components: true,
 
@@ -38,7 +43,7 @@ export default {
   ],
 
   // Modules: https://go.nuxtjs.dev/config-modules
-  modules: ['@nuxtjs/axios', '@nuxtjs/firebase', ['vue-scrollto/nuxt', { duration: 500, offset: -100 }]],
+  modules: ['@nuxtjs/axios', '@nuxtjs/firebase', ['vue-scrollto/nuxt', { duration: 500, offset: -100 }], 'nuxt-compress'],
 
   firebase: {
     config: {
@@ -52,9 +57,12 @@ export default {
       measurementId: 'G-E6V5M65S11',
     },
     services: {
-      analytics: true,
+      analytics: {
+        collectionEnabled: true // default
+      },
       onFirebaseHosting: true,
       storage: true,
+      performance: true
     },
   },
 

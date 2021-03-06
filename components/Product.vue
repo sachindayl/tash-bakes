@@ -1,8 +1,8 @@
 <template>
   <div class="flex justify-center flex-col text-center p-4">
-    <div class="w-64 md:w-128 bg-gray-300 rounded-lg object-cover">
+    <div class="w-64 lg:w-128 bg-gray-300 rounded-lg object-cover">
       <img
-        class="bg-center h-32 w-64 md:w-128 md:h-64 object-cover rounded-lg shadow-md"
+        class="bg-center h-32 w-64 lg:w-128 lg:h-64 object-cover rounded-lg shadow-md"
         :src="imageUrl"
         alt="product image"
       />
@@ -29,7 +29,7 @@
 </template>
 
 <script lang="ts">
-import { Component, Vue, PropSync } from 'nuxt-property-decorator'
+import { Component, PropSync, Vue } from 'nuxt-property-decorator'
 import { ProductI } from '~/pages/index.vue'
 import { FirebaseService } from '~/services/FirebaseService'
 

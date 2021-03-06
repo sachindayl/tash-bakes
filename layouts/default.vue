@@ -13,6 +13,7 @@ export default class Default extends Vue {
   mounted() {
     if(process.client) {
       this.$fire.analytics;
+      this.$fire.performance;
     }
   }
 }

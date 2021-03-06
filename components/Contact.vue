@@ -1,7 +1,7 @@
 <template>
   <div
-    class="p-4 w-full bg-fixed bg-auto flex content-center justify-center flex-wrap"
-    :style="backgroundImage"
+    class="p-4 w-full bg-fixed flex object-center justify-center flex-col"
+    :style="backgroundImage.image"
   >
     <section
       class="w-full max-w-2xl px-6 py-4 mx-auto bg-gray-100 rounded-md shadow-md dark:bg-gray-800 p-16 m-4"
@@ -184,6 +184,7 @@
 <script lang="ts">
 import { Component, Vue } from 'nuxt-property-decorator'
 import { EmailService } from '~/services/EmailService'
+import { FirebaseService } from '~/services/FirebaseService'
 
 export interface MessageI {
   name: string
@@ -201,15 +202,48 @@ export default class Contact extends Vue {
     message: '',
   }
   dialog = false
+  imageUrl = ''
+
+  async mounted() {
+    await this.retrieveImageUrl()
+  }
+
+  async retrieveImageUrl() {
+    if (process.client) {
+      const width = window.innerWidth
+      const firebaseService = new FirebaseService(this.$fire)
+      this.imageUrl = await firebaseService.retrieveImage(
+        'gallery',
+        width < 600 ? 'IMG-5196_8.webp' : 'IMG-5196_7.webp'
+      )
+    }
+  }
 
   get backgroundImage() {
     if (process.client) {
       const width = window.innerWidth
-      return width < 600
-        ? `backgroundImage: url(https://images.unsplash.com/photo-1607096719106-463512cb3a08?ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1600&q=80); height: 1200px; opacity: 0.75;`
-        : `backgroundImage: url(https://images.unsplash.com/photo-1607096719106-463512cb3a08?ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1600&q=80); height: 950px; opacity: 0.75;`
+      let image = {}
+      if (width < 600) {
+        image = {
+          image: `backgroundImage: url(${this.imageUrl});height: 1200px; background-repeat: no-repeat; width:100%; -webkit-background-size: cover;
+      -moz-background-size: cover;
+      -o-background-size: cover;
+      background-size: cover; -webkit-transform: translateZ(0);
+`,
+        }
+      } else {
+        image = {
+          image: `backgroundImage: url(${this.imageUrl});height: 900px; background-repeat: no-repeat; width:100%;
+          -webkit-background-size: cover;
+      -moz-background-size: cover;
+      -o-background-size: cover;
+      background-size: cover; -webkit-transform: translateZ(0);
+`,
+        }
+      }
+      return image
     }
-    return ''
+    return {}
   }
 
   async validateAndSendMessage() {

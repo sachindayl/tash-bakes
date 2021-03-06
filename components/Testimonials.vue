@@ -59,7 +59,7 @@ export default class Testimonials extends Vue {
         message:
           '"Absolutely loved these cupcakes!! Beautifully decorated and tasted delicious. Can’t wait to order more from her!"',
         image:
-          'IMG_5809.jpg',
+          'IMG_5809.webp',
       },
     ]
   }

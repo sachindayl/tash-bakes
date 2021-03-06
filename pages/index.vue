@@ -50,7 +50,7 @@ export default class Index extends Vue {
       const firebaseService = new FirebaseService(this.$fire)
       this.imageUrl = await firebaseService.retrieveImage(
         'gallery',
-        'IMG_3782_4.jpg'
+        'IMG-5392_7.webp'
       )
     }
   }
@@ -58,7 +58,7 @@ export default class Index extends Vue {
   get backgroundImage() {
     if (process.client) {
       const image = {
-        intro: `backgroundImage: url(${this.imageUrl});height: 700px; background-repeat: no-repeat; width:100%;`,
+        intro: `backgroundImage: url(${this.imageUrl});height: 700px; background-repeat: no-repeat; width:100%; object-fit: cover; -webkit-transform: translateZ(0); `,
       }
       this.titleStyle = 'heading animate-bounce text-center text-white'
       this.subtitleStyle =

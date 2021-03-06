@@ -33,6 +33,8 @@
               <img
                 class="w-full h-64 object-cover object-center rounded-md shadow"
                 :src="imageUrl"
+                width='500px'
+                height='300px'
                 alt=""
               />
             </div>
@@ -59,7 +61,7 @@ export default class About extends Vue {
   get heightStyle() {
     if (process.client) {
       const width = window.innerWidth
-      return width < 600 ? 'height: 900px' : 'height: 500px'
+      return width < 600 ? 'height: 900px' : 'height: 700px'
     }
     return ''
   }
@@ -67,7 +69,7 @@ export default class About extends Vue {
   async retrieveImage() {
     const firebaseImageUrl = await new FirebaseService(
       this.$fire
-    ).retrieveImage('testimonials', 'IMG_7659.jpg')
+    ).retrieveImage('testimonials', 'IMG_7659.webp')
     if (firebaseImageUrl !== '' && firebaseImageUrl != undefined) {
       this.imageUrl = firebaseImageUrl
     }
