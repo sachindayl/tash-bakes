@@ -46,12 +46,13 @@
 </template>
 
 <script lang="ts">
-import { Component, Vue } from 'nuxt-property-decorator'
+import { Component, NextTick, Vue } from 'nuxt-property-decorator'
 import { FirebaseService } from '~/services/FirebaseService'
 
 @Component
 export default class About extends Vue {
   imageUrl = require('assets/placeholder.png')
+
   async mounted() {
     if (process.client) {
       await this.retrieveImage()
@@ -73,6 +74,10 @@ export default class About extends Vue {
     if (firebaseImageUrl !== '' && firebaseImageUrl != undefined) {
       this.imageUrl = firebaseImageUrl
     }
+  }
+
+  async sleep(ms: number) {
+    return new Promise(resolve => setTimeout(resolve, ms));
   }
 }
 </script>

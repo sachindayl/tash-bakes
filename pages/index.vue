@@ -1,25 +1,59 @@
 <template>
-  <div class="main-container">
-    <div id="home" class="mx-auto pb-4">
-      <div
-        class="w-full bg-fixed flex flex-col justify-center object-center py-24"
-        :style="backgroundImage.intro"
-      >
-        <div :class="titleStyle">Bakes by Tash</div>
-        <div :class="subtitleStyle">
-          Making you smile one cupcake at a time.
+  <div class='main-container'>
+    <div v-if='loading'>
+
+      <div class='h-full align-middle justify-center'>
+        <div
+          class='w-full bg-fixed flex flex-col justify-center object-center py-24'
+          style='height: 100vh;'
+        >
+          <div :class='titleStyle'>Bakes by Tash</div>
+          <div :class='subtitleStyle'>
+            Making you smile one cupcake at a time.
+          </div>
         </div>
       </div>
+
     </div>
-    <About id="about"></About>
-    <Products class="mb-10"></Products>
-    <Testimonials></Testimonials>
-    <Contact id="contact"></Contact>
+    <div v-else>
+      <div id='home' class='mx-auto pb-4'>
+        <div
+          class='w-full bg-fixed flex flex-col justify-center object-center py-24'
+          :style='backgroundImage.intro'
+        >
+          <div :class='titleStyle'>Bakes by Tash</div>
+          <div :class='subtitleStyle'>
+            Making you smile one cupcake at a time.
+          </div>
+          <!--          <div @click='' class='absolute bottom-0 text-white text-center font-semibold animate-pulse py-10'-->
+          <!--               style='left:50%; transform: translateX(-50%); margin-left: auto; margin-right: auto'>-->
+          <!--            <a href="#" v-scroll-to="'#about'">Scroll Down</a>-->
+
+          <!--          </div>-->
+
+          <div @click='' class='absolute bottom-0 text-white text-center font-semibold animate-pulse py-10'
+               style='left:50%; transform: translateX(-50%); margin-left: auto; margin-right: auto'>
+            <a href='#' v-scroll-to="'#about'">
+              <svg xmlns="http://www.w3.org/2000/svg" width="40" height="40" fill="currentColor" class="bi bi-arrow-down-circle-fill" viewBox="0 0 16 16">
+                <path d="M16 8A8 8 0 1 1 0 8a8 8 0 0 1 16 0zM8.5 4.5a.5.5 0 0 0-1 0v5.793L5.354 8.146a.5.5 0 1 0-.708.708l3 3a.5.5 0 0 0 .708 0l3-3a.5.5 0 0 0-.708-.708L8.5 10.293V4.5z"/>
+              </svg>
+            </a>
+
+          </div>
+
+        </div>
+      </div>
+      <About id='about'></About>
+      <Products class='mb-10'></Products>
+      <Testimonials></Testimonials>
+      <Contact id='contact'></Contact>
+    </div>
+
   </div>
 </template>
 
-<script lang="ts">
-import { Component, Vue } from 'nuxt-property-decorator'
+<script lang='ts'>
+import { Component, NextTick, Vue } from 'nuxt-property-decorator'
 import { FirebaseService } from '~/services/FirebaseService'
 
 export interface ProductI {
@@ -37,32 +71,38 @@ export interface TestimonialI {
 
 @Component
 export default class Index extends Vue {
+  loading = true
   imageUrl = ''
   titleStyle = 'heading animate-bounce text-center'
   subtitleStyle = '-mt-8 text-lg md:text-xl font-semibold text-center'
 
+  @NextTick('retrieveImageUrl')
   async mounted() {
     await this.retrieveImageUrl()
   }
 
   async retrieveImageUrl() {
     if (process.client) {
+      this.$nuxt.$loading.start()
       const firebaseService = new FirebaseService(this.$fire)
       this.imageUrl = await firebaseService.retrieveImage(
         'gallery',
         'IMG-5392_7.webp'
       )
+      this.$nuxt.$loading.finish()
+      this.loading = false
     }
   }
 
   get backgroundImage() {
     if (process.client) {
       const image = {
-        intro: `backgroundImage: url(${this.imageUrl});height: 700px; background-repeat: no-repeat; width:100%; object-fit: cover; -webkit-transform: translateZ(0); `,
+        intro: `backgroundImage: url(${this.imageUrl});height: 100vh; background-repeat: no-repeat; width:100%; object-fit: cover; -webkit-transform: translateZ(0); `
       }
       this.titleStyle = 'heading animate-bounce text-center text-white'
       this.subtitleStyle =
         '-mt-8 text-lg md:text-xl font-semibold text-center text-white'
+
       return image
     }
     return {}
@@ -87,7 +127,7 @@ export default class Index extends Vue {
 
 .title {
   font-family: 'Quicksand', 'Source Sans Pro', -apple-system, BlinkMacSystemFont,
-    'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+  'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
   display: block;
   font-weight: 300;
   font-size: 100px;
