@@ -11,9 +11,9 @@ export class FirebaseService {
     folderName: string,
     imageName: string
   ): Promise<string> {
-    // if (process.env.environ === 'development') {
-    //   return ''
-    // }
+    if (process.env.environ === 'development') {
+      return ''
+    }
     const url = await this.nuxtFire.storage
       .ref(folderName)
       .child(imageName)

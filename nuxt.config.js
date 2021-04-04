@@ -5,8 +5,8 @@ export default {
 
   // Global page headers: https://go.nuxtjs.dev/config-head
   head: {
-    titleTemplate: '%s - Tash Bakes',
-    title: 'tash-bakes',
+    titleTemplate: 'Bakes by Tash',
+    title: 'Bakes by Tash',
     htmlAttrs: {
       lang: 'en',
     },

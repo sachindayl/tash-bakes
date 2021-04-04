@@ -1,6 +1,6 @@
 {
-  "name": "tash-bakes",
-  "version": "1.0.1",
+  "name": "bakes-by-tash",
+  "version": "1.0.2",
   "private": true,
   "scripts": {
     "dev": "nuxt-ts",
@@ -23,7 +23,7 @@
     "vue-scrollto": "2.20.0"
   },
   "devDependencies": {
-    "@babel/preset-env": "^7.12.17",
+    "@babel/preset-env": "7.12.17",
     "@nuxt/types": "2.15.2",
     "@nuxt/typescript-build": "2.0.6",
     "@nuxtjs/device": "2.0.0",
