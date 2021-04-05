@@ -1,30 +1,41 @@
 <template>
-  <div class="container mt-20 mb-10">
-    <div
-      class="w-full h-full fixed block top-0 left-0 bg-white opacity-90 z-50"
-      v-if="loading"
-    >
-      <Spinner></Spinner>
-    </div>
-    <div v-else class="w-full h-full">
-      <div class="py-4  text-center block text-4xl font-bold text-gray-800 dark:text-white">Cakes</div>
-      <div class="grid grid-cols-2 md:grid-cols-3 grid-flow-row gap-2">
-        <div
-          v-for="(item, index) in cakesList"
-          class="p-2"
-          :key="item.name + index"
-        >
-          <GalleryImage :image-data-item.sync="item"></GalleryImage>
-        </div>
+  <div>
+    <NavBar2></NavBar2>
+    <div class="container mx-auto mt-20 mb-10">
+      <div
+        class="w-full h-full fixed block top-0 left-0 bg-white opacity-90 z-50"
+        v-if="loading"
+      >
+        <Spinner></Spinner>
       </div>
-      <div class="py-4 text-center block text-4xl font-bold text-gray-800 dark:text-white">Cupcakes</div>
-      <div class="grid grid-cols-2 md:grid-cols-3 grid-flow-row gap-2">
+      <div v-else class="w-full h-full">
         <div
-          v-for="(item, index) in cupcakesList"
-          class="p-2"
-          :key="item.name + index"
+          class="pt-4 pb-10 text-center block text-4xl font-bold text-gray-800 dark:text-white"
         >
-          <GalleryImage :image-data-item.sync="item"></GalleryImage>
+          Cakes
+        </div>
+        <div class="grid grid-cols-2 md:grid-cols-3 grid-flow-row gap-2">
+          <div
+            v-for="(item, index) in cakesList"
+            class="p-2"
+            :key="item.name + index"
+          >
+            <GalleryImage :image-data-item.sync="item"></GalleryImage>
+          </div>
+        </div>
+        <div
+          class="py-10 text-center block text-4xl font-bold text-gray-800 dark:text-white"
+        >
+          Cupcakes
+        </div>
+        <div class="grid grid-cols-2 md:grid-cols-3 grid-flow-row gap-2">
+          <div
+            v-for="(item, index) in cupcakesList"
+            class="p-2"
+            :key="item.name + index"
+          >
+            <GalleryImage :image-data-item.sync="item"></GalleryImage>
+          </div>
         </div>
       </div>
     </div>
@@ -53,14 +64,14 @@ export default class Gallery extends Vue {
     const cakes = await firebaseService.retrieveImageInfo('cakes')
     for (const item of cakes) {
       item.image = await firebaseService.retrieveImage(
-        'gallery',
+        'cakes',
         item.imageFilename
       )
     }
     const cupcakes = await firebaseService.retrieveImageInfo('cupcakes')
     for (const item of cupcakes) {
       item.image = await firebaseService.retrieveImage(
-        'gallery',
+        'cupcakes',
         item.imageFilename
       )
     }

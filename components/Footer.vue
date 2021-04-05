@@ -1,6 +1,6 @@
 <template>
   <footer
-    class="flex flex-col justify-between items-center px-6 py-2 bg-white dark:bg-gray-800 sm:flex-row"
+    class="flex flex-col justify-between items-center px-6 py-2 bg-white dark:bg-gray-800 sm:flex-row border-t-2"
   >
     <a
       href="#"

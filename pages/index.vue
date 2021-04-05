@@ -1,67 +1,71 @@
 <template>
-  <div class="main-container">
-    <div v-if="loading">
-      <div class="h-full align-middle justify-center">
-        <div
-          class="w-full bg-fixed flex flex-col justify-center object-center py-24"
-          style="height: 100vh"
-        >
-          <div :class="titleStyle">Bakes by Tash</div>
-          <div :class="subtitleStyle">
-            Making you smile one cupcake at a time.
+  <div>
+    <NavBar></NavBar>
+    <div class="main-container">
+      <div v-if="loading">
+        <div class="h-full align-middle justify-center">
+          <div
+            class="w-full bg-fixed flex flex-col justify-center object-center py-24"
+            style="height: 100vh"
+          >
+            <div :class="titleStyle">Bakes by Tash</div>
+            <div :class="subtitleStyle">
+              Making you smile one cupcake at a time.
+            </div>
           </div>
         </div>
       </div>
-    </div>
-    <div v-else>
-      <div id="home" class="mx-auto pb-4">
-        <div
-          class="w-full bg-fixed flex flex-col justify-center object-center py-24"
-          :style='backgroundImage'
-        >
-          <div :class="titleStyle">Bakes by Tash</div>
-          <div :class="subtitleStyle">
-            Making you smile one cupcake at a time.
-          </div>
-          <!--          <div @click='' class='absolute bottom-0 text-white text-center font-semibold animate-pulse py-10'-->
-          <!--               style='left:50%; transform: translateX(-50%); margin-left: auto; margin-right: auto'>-->
-          <!--            <a href="#" v-scroll-to="'#about'">Scroll Down</a>-->
-
-          <!--          </div>-->
-
+      <div v-else>
+        <div id="home" class="mx-auto pb-4">
           <div
-            @click=""
-            class="absolute bottom-0 text-white text-center font-semibold animate-pulse py-10"
-            style="
+            class="w-full bg-fixed flex flex-col justify-center object-center py-24"
+            :style='backgroundImage'
+          >
+            <div :class="titleStyle">Bakes by Tash</div>
+            <div :class="subtitleStyle">
+              Making you smile one cupcake at a time.
+            </div>
+            <!--          <div @click='' class='absolute bottom-0 text-white text-center font-semibold animate-pulse py-10'-->
+            <!--               style='left:50%; transform: translateX(-50%); margin-left: auto; margin-right: auto'>-->
+            <!--            <a href="#" v-scroll-to="'#about'">Scroll Down</a>-->
+
+            <!--          </div>-->
+
+            <div
+              @click=""
+              class="absolute bottom-0 text-white text-center font-semibold animate-pulse py-10"
+              style="
               left: 50%;
               transform: translateX(-50%);
               margin-left: auto;
               margin-right: auto;
             "
-          >
-            <a href="#" v-scroll-to="'#about'">
-              <svg
-                xmlns="http://www.w3.org/2000/svg"
-                width="40"
-                height="40"
-                fill="currentColor"
-                class="bi bi-arrow-down-circle-fill"
-                viewBox="0 0 16 16"
-              >
-                <path
-                  d="M16 8A8 8 0 1 1 0 8a8 8 0 0 1 16 0zM8.5 4.5a.5.5 0 0 0-1 0v5.793L5.354 8.146a.5.5 0 1 0-.708.708l3 3a.5.5 0 0 0 .708 0l3-3a.5.5 0 0 0-.708-.708L8.5 10.293V4.5z"
-                />
-              </svg>
-            </a>
+            >
+              <a href="#" v-scroll-to="'#about'">
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  width="40"
+                  height="40"
+                  fill="currentColor"
+                  class="bi bi-arrow-down-circle-fill"
+                  viewBox="0 0 16 16"
+                >
+                  <path
+                    d="M16 8A8 8 0 1 1 0 8a8 8 0 0 1 16 0zM8.5 4.5a.5.5 0 0 0-1 0v5.793L5.354 8.146a.5.5 0 1 0-.708.708l3 3a.5.5 0 0 0 .708 0l3-3a.5.5 0 0 0-.708-.708L8.5 10.293V4.5z"
+                  />
+                </svg>
+              </a>
+            </div>
           </div>
         </div>
+        <About id="about"></About>
+        <Products class="mb-10"></Products>
+        <Testimonials></Testimonials>
+        <Contact id="contact"></Contact>
       </div>
-      <About id="about"></About>
-      <Products class="mb-10"></Products>
-      <Testimonials></Testimonials>
-      <Contact id="contact"></Contact>
     </div>
   </div>
+
 </template>
 
 <script lang="ts">
