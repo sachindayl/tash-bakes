@@ -17,7 +17,7 @@
       <div id="home" class="mx-auto pb-4">
         <div
           class="w-full bg-fixed flex flex-col justify-center object-center py-24"
-          :style="backgroundImage"
+          :style='backgroundImage'
         >
           <div :class="titleStyle">Bakes by Tash</div>
           <div :class="subtitleStyle">
@@ -108,14 +108,28 @@ export default class Index extends Vue {
 
   get backgroundImage() {
     if (process.client) {
-      const image = {
-        backgroundImage: 'url(' + require('@/assets/IMG-5392_7.webp') + ')',
-        height: '100vh',
-        backgroundRepeat: 'no-repeat',
-        width: '100%',
-        objectFit: 'cover',
-        '-webkit-transform': 'translateZ(0)',
+      const width = window.innerWidth
+      let image = {}
+      if(width < 640) {
+        image = {
+          backgroundImage: 'url(' + require('@/assets/IMG-5392_7.webp') + ')',
+          height: '100vh',
+          backgroundRepeat: 'no-repeat',
+          width: '100%',
+          objectFit: 'contain',
+          '-webkit-transform': 'translateZ(0)',
+        }
+      } else {
+        image = {
+          backgroundImage: 'url(' + require('@/assets/IMG-5392_7.webp') + ')',
+          height: '100vh',
+          backgroundRepeat: 'no-repeat',
+          width: '100%',
+          objectFit: 'contain',
+          '-webkit-transform': 'translateZ(0)',
+        }
       }
+
       this.titleStyle = 'heading animate-bounce text-center text-white'
       this.subtitleStyle =
         '-mt-8 text-lg md:text-xl font-semibold text-center text-white'
@@ -140,6 +154,12 @@ export default class Index extends Vue {
   justify-content: center;
   align-items: center;
   text-align: center;
+}
+
+.hero {
+  background-image: url("../assets/IMG-5392_7.webp");
+  height: 100vh;
+  object-fit: contain;
 }
 
 .title {

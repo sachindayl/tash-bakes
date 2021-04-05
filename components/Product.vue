@@ -1,31 +1,33 @@
 <template>
-  <div class="flex justify-center flex-col text-center p-4">
-    <div class="w-64 lg:w-128 bg-gray-300 rounded-lg object-cover">
-      <img
-        class="bg-center h-32 w-64 lg:w-128 lg:h-64 object-cover rounded-lg shadow-md"
-        :src="imageUrl"
-        alt="product image"
-      />
-    </div>
-
-    <div
-      class="w-56 -mt-10 mx-auto justify-center overflow-hidden bg-white rounded-lg shadow-lg md:w-64 dark:bg-gray-800"
-    >
-      <h3
-        class="py-2 font-bold tracking-wide text-center text-gray-800 uppercase dark:text-white"
-      >
-        {{ product.name }}
-      </h3>
+  <nuxt-link to="/gallery">
+    <div class="flex justify-center flex-col text-center p-4">
+      <div class="w-64 lg:w-128 bg-gray-300 rounded-lg object-cover">
+        <img
+          class="bg-center h-32 w-64 lg:w-128 lg:h-64 object-cover rounded-lg shadow-md"
+          :src="imageUrl"
+          alt="product image"
+        />
+      </div>
 
       <div
-        class="flex items-center justify-center px-3 py-2 bg-gray-200 dark:bg-gray-700"
+        class="w-56 -mt-10 mx-auto justify-center overflow-hidden bg-white rounded-lg shadow-lg md:w-64 dark:bg-gray-800"
       >
-        <span class="font-bold text-gray-800 dark:text-gray-200"
-          >Starting from {{ product.price }}</span
+        <h3
+          class="py-2 font-bold tracking-wide text-center text-gray-800 uppercase dark:text-white"
         >
+          {{ product.name }}
+        </h3>
+
+        <div
+          class="flex items-center justify-center px-3 py-2 bg-gray-200 dark:bg-gray-700"
+        >
+          <span class="font-bold text-gray-800 dark:text-gray-200"
+            >Starting from {{ product.price }}</span
+          >
+        </div>
       </div>
     </div>
-  </div>
+  </nuxt-link>
 </template>
 
 <script lang="ts">
