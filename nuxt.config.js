@@ -80,6 +80,7 @@ export default {
       },
       onFirebaseHosting: true,
       storage: true,
+      firestore: true,
       performance: true
     },
   },
