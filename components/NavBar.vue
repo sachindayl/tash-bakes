@@ -48,6 +48,12 @@
           <a
             class="my-1 text-sm text-gray-700 dark:text-gray-200 font-medium hover:text-indigo-500 dark:hover:text-indigo-400 md:mx-4 md:my-0"
             href="#"
+            v-scroll-to="'#products'"
+          >Products</a
+          >
+          <a
+            class="my-1 text-sm text-gray-700 dark:text-gray-200 font-medium hover:text-indigo-500 dark:hover:text-indigo-400 md:mx-4 md:my-0"
+            href="#"
             v-scroll-to="'#contact'"
             >Contact</a
           >

@@ -1,5 +1,5 @@
 <template>
-  <nuxt-link to="/gallery">
+  <nuxt-link to="/products">
     <div class="flex justify-center flex-col text-center p-4">
       <div class="w-64 lg:w-128 bg-gray-300 rounded-lg object-cover">
         <img

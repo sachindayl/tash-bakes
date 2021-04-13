@@ -67,6 +67,7 @@ export default class Gallery extends Vue {
         'cakes',
         item.imageFilename
       )
+      item.category = "cakes"
     }
     const cupcakes = await firebaseService.retrieveImageInfo('cupcakes')
     for (const item of cupcakes) {
@@ -74,6 +75,7 @@ export default class Gallery extends Vue {
         'cupcakes',
         item.imageFilename
       )
+      item.category = "cupcakes"
     }
     this.cakesList = cakes
     this.cupcakesList = cupcakes

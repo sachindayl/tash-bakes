@@ -25,12 +25,6 @@
             <div :class="subtitleStyle">
               Making you smile one cupcake at a time.
             </div>
-            <!--          <div @click='' class='absolute bottom-0 text-white text-center font-semibold animate-pulse py-10'-->
-            <!--               style='left:50%; transform: translateX(-50%); margin-left: auto; margin-right: auto'>-->
-            <!--            <a href="#" v-scroll-to="'#about'">Scroll Down</a>-->
-
-            <!--          </div>-->
-
             <div
               @click=""
               class="absolute bottom-0 text-white text-center font-semibold animate-pulse py-10"
@@ -59,7 +53,7 @@
           </div>
         </div>
         <About id="about"></About>
-        <Products class="mb-10"></Products>
+        <Products id='products' class="mb-10"></Products>
         <Testimonials></Testimonials>
         <Contact id="contact"></Contact>
       </div>

@@ -83,7 +83,7 @@ export default class Products extends Vue {
       {
         name: 'Cupcakes',
         image: 'IMG_4826_1.webp',
-        price: '$25',
+        price: '$20',
       },
       {
         name: 'Cakes',

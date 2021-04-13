@@ -61,7 +61,7 @@ export default {
   ],
 
   // Modules: https://go.nuxtjs.dev/config-modules
-  modules: ['@nuxtjs/axios', '@nuxtjs/firebase', ['vue-scrollto/nuxt', { duration: 300, offset: -90 }], 'nuxt-compress'],
+  modules: ['@nuxtjs/axios', '@nuxtjs/firebase', ['vue-scrollto/nuxt', { duration: 300, offset: -90 }], 'nuxt-compress',  'nuxt-lazy-load'],
 
   firebase: {
     config: {

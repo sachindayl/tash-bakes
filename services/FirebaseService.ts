@@ -1,6 +1,7 @@
 import { NuxtFireInstance } from '@nuxtjs/firebase'
 import { ImageDataModel } from '~/data/models/ImageDataModel'
 import { ImageDataI } from '~/data/interfaces/ImageDataI'
+import { PriceDataModel } from '~/data/models/priceDataModel'
 
 export class FirebaseService {
   private nuxtFire: NuxtFireInstance
@@ -22,9 +23,13 @@ export class FirebaseService {
 
       let imageDataList: ImageDataI[] = []
       querySnapshot.forEach((doc) => {
-        // console.log(JSON.stringify(doc.data()))
         imageDataList.push(
-          new ImageDataModel(doc.data().name, doc.data().imageFilename, "")
+          new ImageDataModel(
+            '',
+            doc.data().name,
+            doc.data().imageFilename,
+            new PriceDataModel(doc.data().price.cake, doc.data().price.cupcake)
+          )
         )
       })
       return imageDataList
@@ -33,7 +38,6 @@ export class FirebaseService {
       return Promise.reject(e)
     }
   }
-
 
   public async retrieveImage(
     folderName: string,

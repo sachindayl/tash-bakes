@@ -18,6 +18,7 @@
     "firebase": "8.2.7",
     "nuxt": "2.14.12",
     "nuxt-compress": "4.1.0",
+    "nuxt-lazy-load": "^1.2.6",
     "nuxt-property-decorator": "2.9.1",
     "vue-fb-customer-chat": "^0.2.0",
     "vue-scrollto": "2.20.0"

@@ -1,12 +1,16 @@
 module.exports = {
-  purge: [
-    './components/**/*.html',
-    './layouts/**/*.html',
-    './pages/**/*.html',
-    './components/**/*.vue',
-    './layouts/**/*.vue',
-    './pages/**/*.vue',
-  ],
+  purge: {
+    enabled: true,
+    layers: ['components', 'utilities'],
+    content: [
+      './components/**/*.html',
+      './layouts/**/*.html',
+      './pages/**/*.html',
+      './components/**/*.vue',
+      './layouts/**/*.vue',
+      './pages/**/*.vue',
+    ]
+  },
   theme: {
     extend: {
       spacing: {
