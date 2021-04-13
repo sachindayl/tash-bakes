@@ -1,6 +1,6 @@
 <template>
   <section
-    class="bg-white dark:bg-gray-800 p-12 flex flex-col justify-center"
+    class="bg-white dark:bg-gray-800 p-4 sm:p-12 flex flex-col justify-center"
     :style="heightStyle"
   >
     <div class="container mx-auto px-6 py-8">
@@ -62,7 +62,7 @@ export default class About extends Vue {
   get heightStyle() {
     if (process.client) {
       const width = window.innerWidth
-      return width < 600 ? 'height: 900px' : 'height: 700px'
+      return width < 600 ? 'height: 950px' : 'height: 700px'
     }
     return ''
   }

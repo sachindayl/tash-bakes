@@ -1,16 +1,4 @@
 module.exports = {
-  purge: {
-    enabled: true,
-    layers: ['components', 'utilities'],
-    content: [
-      './components/**/*.html',
-      './layouts/**/*.html',
-      './pages/**/*.html',
-      './components/**/*.vue',
-      './layouts/**/*.vue',
-      './pages/**/*.vue',
-    ]
-  },
   theme: {
     extend: {
       spacing: {
@@ -33,4 +21,19 @@ module.exports = {
   },
   variants: {},
   plugins: [],
+  purge: {
+    mode: 'layers',
+    layers: ['components', 'utilities'],
+    content: [
+      'nuxt.config.js',
+      // TypeScript
+      'plugins/**/*.ts',
+      './components/**/*.html',
+      './layouts/**/*.html',
+      './pages/**/*.html',
+      './components/**/*.vue',
+      './layouts/**/*.vue',
+      './pages/**/*.vue',
+    ]
+  }
 }

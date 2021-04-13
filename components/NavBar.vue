@@ -7,8 +7,7 @@
             class="navbar-heading text-gray-800 dark:text-white text-xl font-bold md:text-2xl hover:text-gray-700 dark:hover:text-gray-300"
             href="#"
             v-scroll-to="'#home'"
-            >Bakes by Tash</a
-          >
+            ><img :src="logo.backgroundImage" class='h-12 sm:h-16' alt="Bakes by Tash"/></a>
         </div>
 
         <!-- Mobile menu button -->
@@ -49,7 +48,7 @@
             class="my-1 text-sm text-gray-700 dark:text-gray-200 font-medium hover:text-indigo-500 dark:hover:text-indigo-400 md:mx-4 md:my-0"
             href="#"
             v-scroll-to="'#products'"
-          >Products</a
+            >Products</a
           >
           <a
             class="my-1 text-sm text-gray-700 dark:text-gray-200 font-medium hover:text-indigo-500 dark:hover:text-indigo-400 md:mx-4 md:my-0"
@@ -69,6 +68,9 @@ import { Component, Vue } from 'nuxt-property-decorator'
 @Component
 export default class Header extends Vue {
   menuItemsVisible = false
+  logo = {
+    backgroundImage: require('@/assets/logo-pink.png'),
+  }
 
   mounted() {
     if (process.client) {

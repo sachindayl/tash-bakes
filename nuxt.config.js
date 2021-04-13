@@ -83,6 +83,7 @@ export default {
       analytics: {
         collectionEnabled: true // default
       },
+      auth: true,
       onFirebaseHosting: true,
       storage: true,
       firestore: true,
@@ -102,4 +103,16 @@ export default {
     templateId: 'template_3tl879f',
     userId: 'user_49xVOX2trBOy3FkIZpaWa',
   },
+
+  tailwindcss: {
+    jit: true,
+    config: {
+      /* Extend the Tailwind config here */
+      purge: {
+        content: [
+          'content/**/**.md'
+        ]
+      }
+    }
+  }
 }

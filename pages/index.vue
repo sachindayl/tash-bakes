@@ -19,7 +19,7 @@
         <div id="home" class="mx-auto pb-4">
           <div
             class="w-full bg-fixed flex flex-col justify-center object-center py-24"
-            :style='backgroundImage'
+            :style="backgroundImage"
           >
             <div :class="titleStyle">Bakes by Tash</div>
             <div :class="subtitleStyle">
@@ -29,11 +29,11 @@
               @click=""
               class="absolute bottom-0 text-white text-center font-semibold animate-pulse py-10"
               style="
-              left: 50%;
-              transform: translateX(-50%);
-              margin-left: auto;
-              margin-right: auto;
-            "
+                left: 50%;
+                transform: translateX(-50%);
+                margin-left: auto;
+                margin-right: auto;
+              "
             >
               <a href="#" v-scroll-to="'#about'">
                 <svg
@@ -53,13 +53,12 @@
           </div>
         </div>
         <About id="about"></About>
-        <ProductsSection id='products' class="mb-10"></ProductsSection>
+        <ProductsSection id="products" class="mb-10"></ProductsSection>
         <Testimonials></Testimonials>
         <Contact id="contact"></Contact>
       </div>
     </div>
   </div>
-
 </template>
 
 <script lang="ts">
@@ -85,6 +84,9 @@ export default class Index extends Vue {
   imageUrl = ''
   titleStyle = 'heading animate-bounce text-center'
   subtitleStyle = '-mt-8 text-lg md:text-xl font-semibold text-center'
+  logo = {
+    backgroundImage: require('@/assets/logo-pink.png'),
+  }
 
   @NextTick('retrieveImageUrl')
   async mounted() {
@@ -106,26 +108,13 @@ export default class Index extends Vue {
 
   get backgroundImage() {
     if (process.client) {
-      const width = window.innerWidth
-      let image = {}
-      if(width < 640) {
-        image = {
-          backgroundImage: 'url(' + require('@/assets/IMG-5392_7.webp') + ')',
-          height: '100vh',
-          backgroundRepeat: 'no-repeat',
-          width: '100%',
-          objectFit: 'contain',
-          '-webkit-transform': 'translateZ(0)',
-        }
-      } else {
-        image = {
-          backgroundImage: 'url(' + require('@/assets/IMG-5392_7.webp') + ')',
-          height: '100vh',
-          backgroundRepeat: 'no-repeat',
-          width: '100%',
-          objectFit: 'contain',
-          '-webkit-transform': 'translateZ(0)',
-        }
+      const image = {
+        background: 'url(' + require('@/assets/sunset-wallpaper.webp') + ')',
+        height: '100vh',
+        backgroundRepeat: 'no-repeat',
+        width: '100%',
+        backgroundSize: 'cover',
+        '-webkit-transform': 'translateZ(0)',
       }
 
       this.titleStyle = 'heading animate-bounce text-center text-white'
@@ -155,7 +144,7 @@ export default class Index extends Vue {
 }
 
 .hero {
-  background-image: url("../assets/IMG-5392_7.webp");
+  background-image: url('../assets/IMG-5392_7.webp');
   height: 100vh;
   object-fit: contain;
 }
