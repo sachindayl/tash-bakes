@@ -53,7 +53,7 @@
           </div>
         </div>
         <About id="about"></About>
-        <Products id='products' class="mb-10"></Products>
+        <ProductsSection id='products' class="mb-10"></ProductsSection>
         <Testimonials></Testimonials>
         <Contact id="contact"></Contact>
       </div>

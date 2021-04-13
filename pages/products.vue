@@ -54,29 +54,13 @@ export default class Gallery extends Vue {
   cupcakesList: ImageDataI[] = []
 
   async mounted() {
-    if (process.client) {
-      await this.retrieveImages()
-    }
+      await this.retrieveImageData()
   }
 
-  async retrieveImages() {
+  async retrieveImageData() {
     const firebaseService = new FirebaseService(this.$fire)
     const cakes = await firebaseService.retrieveImageInfo('cakes')
-    for (const item of cakes) {
-      item.image = await firebaseService.retrieveImage(
-        'cakes',
-        item.imageFilename
-      )
-      item.category = "cakes"
-    }
     const cupcakes = await firebaseService.retrieveImageInfo('cupcakes')
-    for (const item of cupcakes) {
-      item.image = await firebaseService.retrieveImage(
-        'cupcakes',
-        item.imageFilename
-      )
-      item.category = "cupcakes"
-    }
     this.cakesList = cakes
     this.cupcakesList = cupcakes
 

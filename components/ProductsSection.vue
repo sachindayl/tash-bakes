@@ -8,7 +8,7 @@
       class="flex flex-col md:flex-row items-center justify-center max-w-sm mx-auto gap-12"
     >
       <div v-for="product in products">
-        <Product :products-data.sync="product"></Product>
+        <ProductSectionItem :products-data.sync="product"></ProductSectionItem>
       </div>
     </div>
   </div>
