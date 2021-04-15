@@ -2,7 +2,6 @@ export default {
   // Target: https://go.nuxtjs.dev/config-target
   target: 'static',
 
-
   // Global page headers: https://go.nuxtjs.dev/config-head
   head: {
     titleTemplate: 'Bakes by Tash',
@@ -22,23 +21,23 @@ export default {
     ],
     link: [
       {
-        rel: "apple-touch-icon",
-        sizes: "180x180",
-        href: "/apple-touch-icon.png"
+        rel: 'apple-touch-icon',
+        sizes: '180x180',
+        href: '/apple-touch-icon.png',
       },
       {
-        rel: "icon",
-        type: "image/png",
-        sizes: "32x32",
-        href: "/favicon-32x32.png"
+        rel: 'icon',
+        type: 'image/png',
+        sizes: '32x32',
+        href: '/favicon-32x32.png',
       },
       {
-        rel: "icon",
-        type: "image/png",
-        sizes: "16x16",
-        href: "/favicon-16x16.png"
+        rel: 'icon',
+        type: 'image/png',
+        sizes: '16x16',
+        href: '/favicon-16x16.png',
       },
-      { rel: "manifest", href: "/site.webmanifest" },
+      { rel: 'manifest', href: '/site.webmanifest' },
       { rel: 'icon', type: 'image/x-icon', href: '/favicon.ico' },
       {
         rel: 'stylesheet',
@@ -46,16 +45,16 @@ export default {
       },
       {
         rel: 'preconnect',
-        href: 'https://firebase.googleapis.com'
-      }
+        href: 'https://firebase.googleapis.com',
+      },
     ],
   },
 
   // Global CSS: https://go.nuxtjs.dev/config-css
-  css: [],
+  css: ['~assets/css/global.css'],
 
   // Plugins to run before rendering page: https://go.nuxtjs.dev/config-plugins
-  plugins: [{ src: "~/plugins/vue-fb-customer-chat.js", ssr: false }],
+  plugins: [{ src: '~/plugins/vue-fb-customer-chat.js', ssr: false }],
 
   components: true,
 
@@ -63,10 +62,22 @@ export default {
     '@nuxt/typescript-build',
     '@nuxtjs/tailwindcss',
     '@nuxtjs/device',
+    '@nuxt/postcss8'
   ],
 
   // Modules: https://go.nuxtjs.dev/config-modules
-  modules: ['@nuxtjs/axios', '@nuxtjs/firebase', ['vue-scrollto/nuxt', { duration: 300, offset: -90 }], 'nuxt-compress',  'nuxt-lazy-load'],
+  modules: [
+    '@nuxtjs/axios',
+    '@nuxtjs/firebase',
+    ['vue-scrollto/nuxt', { duration: 300, offset: -90 }],
+    'nuxt-compress',
+    [
+      'nuxt-lazy-load',
+      {
+        directiveOnly: true,
+      },
+    ],
+  ],
 
   firebase: {
     config: {
@@ -81,13 +92,12 @@ export default {
     },
     services: {
       analytics: {
-        collectionEnabled: true // default
+        collectionEnabled: true, // default
       },
-      auth: true,
       onFirebaseHosting: true,
       storage: true,
       firestore: true,
-      performance: true
+      performance: true,
     },
   },
 
@@ -95,7 +105,15 @@ export default {
   axios: {},
 
   // Build Configuration: https://go.nuxtjs.dev/config-build
-  build: {},
+  build: {
+    postcss: {
+      plugins: {
+        'postcss-import': true,
+        tailwindcss: {},
+        autoprefixer: {},
+      }
+    },
+  },
 
   env: {
     environ: process.env.NODE_ENV || 'development',
@@ -105,14 +123,7 @@ export default {
   },
 
   tailwindcss: {
-    jit: true,
-    config: {
-      /* Extend the Tailwind config here */
-      purge: {
-        content: [
-          'content/**/**.md'
-        ]
-      }
-    }
-  }
+    exposeConfig: true,
+    jit: true
+  },
 }

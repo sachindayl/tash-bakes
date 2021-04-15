@@ -2,54 +2,39 @@
   <div>
     <NavBar></NavBar>
     <div class="main-container">
-      <div v-if="loading">
-        <div class="h-full align-middle justify-center">
-          <div
-            class="w-full bg-fixed flex flex-col justify-center object-center py-24"
-            style="height: 100vh"
-          >
-            <div :class="titleStyle">Bakes by Tash</div>
-            <div :class="subtitleStyle">
-              Making you smile one cupcake at a time.
-            </div>
+      <div id="home" class="mx-auto">
+        <div
+          class="w-full bg-fixed flex flex-col justify-center object-center py-24"
+          :style="backgroundImage"
+        >
+          <div :class="titleStyle">Bakes by Tash</div>
+          <div :class="subtitleStyle">
+            Making you smile one cupcake at a time.
           </div>
-        </div>
-      </div>
-      <div v-else>
-        <div id="home" class="mx-auto pb-4">
           <div
-            class="w-full bg-fixed flex flex-col justify-center object-center py-24"
-            :style="backgroundImage"
+            @click=""
+            class="absolute bottom-0 text-white text-center font-semibold animate-pulse py-10"
+            style="
+              left: 50%;
+              transform: translateX(-50%);
+              margin-left: auto;
+              margin-right: auto;
+            "
           >
-            <div :class="titleStyle">Bakes by Tash</div>
-            <div :class="subtitleStyle">
-              Making you smile one cupcake at a time.
-            </div>
-            <div
-              @click=""
-              class="absolute bottom-0 text-white text-center font-semibold animate-pulse py-10"
-              style="
-                left: 50%;
-                transform: translateX(-50%);
-                margin-left: auto;
-                margin-right: auto;
-              "
-            >
-              <a href="#" v-scroll-to="'#about'">
-                <svg
-                  xmlns="http://www.w3.org/2000/svg"
-                  width="40"
-                  height="40"
-                  fill="currentColor"
-                  class="bi bi-arrow-down-circle-fill"
-                  viewBox="0 0 16 16"
-                >
-                  <path
-                    d="M16 8A8 8 0 1 1 0 8a8 8 0 0 1 16 0zM8.5 4.5a.5.5 0 0 0-1 0v5.793L5.354 8.146a.5.5 0 1 0-.708.708l3 3a.5.5 0 0 0 .708 0l3-3a.5.5 0 0 0-.708-.708L8.5 10.293V4.5z"
-                  />
-                </svg>
-              </a>
-            </div>
+            <a href="#" v-scroll-to="'#about'">
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                width="40"
+                height="40"
+                fill="currentColor"
+                class="bi bi-arrow-down-circle-fill"
+                viewBox="0 0 16 16"
+              >
+                <path
+                  d="M16 8A8 8 0 1 1 0 8a8 8 0 0 1 16 0zM8.5 4.5a.5.5 0 0 0-1 0v5.793L5.354 8.146a.5.5 0 1 0-.708.708l3 3a.5.5 0 0 0 .708 0l3-3a.5.5 0 0 0-.708-.708L8.5 10.293V4.5z"
+                />
+              </svg>
+            </a>
           </div>
         </div>
         <About id="about"></About>
@@ -62,8 +47,7 @@
 </template>
 
 <script lang="ts">
-import { Component, NextTick, Vue } from 'nuxt-property-decorator'
-import { FirebaseService } from '~/services/FirebaseService'
+import { Component, Vue } from 'nuxt-property-decorator'
 
 export interface ProductI {
   name: string
@@ -80,31 +64,8 @@ export interface TestimonialI {
 
 @Component
 export default class Index extends Vue {
-  loading = true
-  imageUrl = ''
   titleStyle = 'heading animate-bounce text-center'
   subtitleStyle = '-mt-8 text-lg md:text-xl font-semibold text-center'
-  logo = {
-    backgroundImage: require('@/assets/logo-pink.png'),
-  }
-
-  @NextTick('retrieveImageUrl')
-  async mounted() {
-    await this.retrieveImageUrl()
-  }
-
-  async retrieveImageUrl() {
-    if (process.client) {
-      this.$nuxt.$loading.start()
-      const firebaseService = new FirebaseService(this.$fire)
-      this.imageUrl = await firebaseService.retrieveImage(
-        'gallery',
-        'IMG-5392_7.webp'
-      )
-      this.$nuxt.$loading.finish()
-      this.loading = false
-    }
-  }
 
   get backgroundImage() {
     if (process.client) {
@@ -114,13 +75,15 @@ export default class Index extends Vue {
         backgroundRepeat: 'no-repeat',
         width: '100%',
         backgroundSize: 'cover',
+        '-webkit-background-size': 'cover',
+        '-moz-background-size': 'cover',
+        '-o-background-size': 'cover',
         '-webkit-transform': 'translateZ(0)',
       }
 
       this.titleStyle = 'heading animate-bounce text-center text-white'
       this.subtitleStyle =
         '-mt-8 text-lg md:text-xl font-semibold text-center text-white'
-
       return image
     }
     return {}
@@ -128,7 +91,7 @@ export default class Index extends Vue {
 }
 </script>
 
-<style>
+<style lang='scss'>
 /* Sample `apply` at-rules with Tailwind CSS
 .container {
 @apply min-h-screen flex justify-center items-center text-center mx-auto;
@@ -141,12 +104,6 @@ export default class Index extends Vue {
   justify-content: center;
   align-items: center;
   text-align: center;
-}
-
-.hero {
-  background-image: url('../assets/IMG-5392_7.webp');
-  height: 100vh;
-  object-fit: contain;
 }
 
 .title {
@@ -172,8 +129,8 @@ export default class Index extends Vue {
 }
 
 .heading {
-  font-family: 'Playball', cursive;
-  font-size: 96px;
+  font-family: 'MilkyNice', cursive;
+  font-size: 84px;
 }
 
 @media only screen and (max-width: 600px) {
@@ -183,7 +140,7 @@ export default class Index extends Vue {
 }
 
 .navbar-heading {
-  font-family: 'Playball', cursive;
+  font-family: 'MilkyNice', cursive;
   font-size: 28px;
 }
 
@@ -194,7 +151,7 @@ export default class Index extends Vue {
 }
 
 .footer-heading {
-  font-family: 'Playball', cursive;
+  font-family: 'MilkyNice', cursive;
   font-size: 24px;
 }
 
@@ -205,18 +162,18 @@ export default class Index extends Vue {
 }
 
 .subs-title {
-  font-family: 'Playball', cursive;
-  font-size: 48px;
+  font-family: 'MilkyNice', cursive;
+  font-size: 40px;
 }
 
 @media only screen and (max-width: 600px) {
   .subs-title {
-    font-size: 36px;
+    font-size: 32px;
   }
 }
 
 .subs-title-white {
-  font-family: 'Playball', cursive;
+  font-family: 'MilkyNice', cursive;
   font-size: 48px;
   color: white !important;
 }

@@ -1,16 +1,18 @@
 <template>
   <div>
-    <NavBar2></NavBar2>
+
     <div class="container mx-auto mt-20 mb-10">
       <div
         class="w-full h-full fixed block top-0 left-0 bg-white opacity-90 z-50"
         v-if="loading"
       >
+        <NavBar2></NavBar2>
         <Spinner></Spinner>
       </div>
       <div v-else class="w-full h-full">
+        <NavBar2></NavBar2>
         <div
-          class="pt-4 pb-10 text-center block text-4xl font-bold text-gray-800 dark:text-white"
+          class="subs-title animate-wiggle pt-8 pb-10 text-center block text-4xl font-bold text-gray-800 dark:text-white"
         >
           Cakes
         </div>
@@ -24,7 +26,7 @@
           </div>
         </div>
         <div
-          class="py-10 text-center block text-4xl font-bold text-gray-800 dark:text-white"
+          class="subs-title animate-wiggle py-10 text-center block text-4xl font-bold text-gray-800 dark:text-white"
         >
           Cupcakes
         </div>
@@ -69,4 +71,4 @@ export default class Gallery extends Vue {
 }
 </script>
 
-<style lang="scss" scoped></style>
+<style lang="postCss" scoped></style>

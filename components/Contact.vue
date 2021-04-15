@@ -1,13 +1,13 @@
 <template>
   <div
     class="p-4 w-full bg-fixed flex object-center justify-center flex-col"
-    :style="backgroundImage.image"
+    :style="backgroundImage"
   >
     <section
       class="w-full max-w-2xl px-6 py-4 mx-auto bg-gray-100 rounded-md shadow-md dark:bg-gray-800 p-16 m-4"
     >
       <h2
-        class="subs-title animate-wiggle text-3xl font-semibold text-center text-gray-800 dark:text-white"
+        class="p-4 subs-title animate-wiggle text-3xl font-semibold text-center text-gray-800 dark:text-white"
       >
         Get in touch
       </h2>
@@ -166,7 +166,7 @@
 
         <div class="flex justify-center mt-6">
           <button
-            class="px-4 py-2 text-white transition-colors duration-200 transform bg-gray-700 rounded hover:bg-gray-600 focus:outline-none focus:bg-gray-600"
+            class="px-4 py-2 transition-colors duration-200 transform bg-primary text-white rounded hover:bg-gray-600 focus:outline-none focus:bg-gray-600"
             @click="validateAndSendMessage"
           >
             Send Message
@@ -184,7 +184,6 @@
 <script lang="ts">
 import { Component, Vue } from 'nuxt-property-decorator'
 import { EmailService } from '~/services/EmailService'
-import { FirebaseService } from '~/services/FirebaseService'
 
 export interface MessageI {
   name: string
@@ -202,48 +201,38 @@ export default class Contact extends Vue {
     message: '',
   }
   dialog = false
-  imageUrl = ''
 
-  async mounted() {
-    await this.retrieveImageUrl()
-  }
-
-  async retrieveImageUrl() {
-    if (process.client) {
-      const width = window.innerWidth
-      const firebaseService = new FirebaseService(this.$fire)
-      this.imageUrl = await firebaseService.retrieveImage(
-        'gallery',
-        width < 600 ? 'IMG-5196_8.webp' : 'IMG-5196_7.webp'
-      )
-    }
-  }
+  async mounted() {}
 
   get backgroundImage() {
     if (process.client) {
       const width = window.innerWidth
-      let image = {}
       if (width < 600) {
-        image = {
-          image: `backgroundImage: url(${this.imageUrl});height: 1200px; background-repeat: no-repeat; width:100%; -webkit-background-size: cover;
-      -moz-background-size: cover;
-      -o-background-size: cover;
-      background-size: cover; -webkit-transform: translateZ(0);
-`,
+        return {
+          background: 'url(' + require('@/assets/owls2.webp') + ')',
+          height: '1200px',
+          backgroundRepeat: 'no-repeat',
+          width: '100%',
+          backgroundSize: 'cover',
+          '-webkit-background-size': 'cover',
+          '-moz-background-size': 'cover',
+          '-o-background-size': 'cover',
+          '-webkit-transform': 'translateZ(0)',
         }
       } else {
-        image = {
-          image: `backgroundImage: url(${this.imageUrl});height: 900px; background-repeat: no-repeat; width:100%;
-          -webkit-background-size: cover;
-      -moz-background-size: cover;
-      -o-background-size: cover;
-      background-size: cover; -webkit-transform: translateZ(0);
-`,
+        return {
+          backgroundImage: 'url(' + require('@/assets/owls2.webp') + ')',
+          height: '900px',
+          backgroundRepeat: 'no-repeat',
+          width: '100%',
+          backgroundSize: 'cover',
+          '-webkit-background-size': 'cover',
+          '-moz-background-size': 'cover',
+          '-o-background-size': 'cover',
+          '-webkit-transform': 'translateZ(0)',
         }
       }
-      return image
     }
-    return {}
   }
 
   async validateAndSendMessage() {
@@ -255,4 +244,5 @@ export default class Contact extends Vue {
 }
 </script>
 
-<style scoped></style>
+<style scoped>
+</style>

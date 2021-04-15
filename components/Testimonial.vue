@@ -4,7 +4,7 @@
   >
     <div class="flex justify-center -mt-16 md:justify-end">
       <img
-        class="object-cover w-20 h-20 border-2 border-orange-500 rounded-full dark:border-orange-400"
+        class="object-cover w-20 h-20 border-2 border-primary rounded-full dark:border-red-300"
         alt="Testimonial avatar"
         :src="imageUrl"
       />
@@ -23,7 +23,7 @@
     <div class="flex justify-end mt-4">
       <a
         href="#"
-        class="text-xl font-medium text-orange-500 dark:text-orange-300"
+        class="text-xl font-medium text-primary dark:text-orange-300"
         >{{ testimonial.customerName }}</a
       >
     </div>
@@ -62,4 +62,5 @@ export default class Testimonial extends Vue {
 }
 </script>
 
-<style scoped></style>
+<style lang='css' scoped>
+</style>

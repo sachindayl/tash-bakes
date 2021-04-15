@@ -1,0 +1,11 @@
+@font-face {
+  font-family: "MilkyNice";
+  src: local("MilkyNice"),
+  url(~assets/fonts/MilkyNice.ttf) format("truetype");
+}
+
+html {
+  font-family: "MilkyNice";
+}
+
+

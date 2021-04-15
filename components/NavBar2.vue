@@ -7,7 +7,7 @@
             <div
               class="navbar-heading text-gray-800 dark:text-white text-xl font-bold md:text-2xl hover:text-gray-700 dark:hover:text-gray-300"
             >
-              Bakes by Tash
+              <img :src="backgroundImage" class='h-12 sm:h-16' alt="Bakes by Tash"/>
             </div>
           </nuxt-link>
         </div>
@@ -36,27 +36,27 @@
         <div class="flex flex-col md:flex-row md:mx-6">
           <nuxt-link to="/">
             <div
-              class="my-1 text-sm text-gray-700 dark:text-gray-200 font-medium hover:text-indigo-500 dark:hover:text-indigo-400 md:mx-4 md:my-0"
+              class="my-1 text-sm text-gray-700 dark:text-gray-200 font-medium hover:text-primary dark:hover:text-indigo-400 md:mx-4 md:my-0"
             >
               Home
             </div>
           </nuxt-link>
           <nuxt-link to="/#about">
             <div
-              class="my-1 text-sm text-gray-700 dark:text-gray-200 font-medium hover:text-indigo-500 dark:hover:text-indigo-400 md:mx-4 md:my-0"
+              class="my-1 text-sm text-gray-700 dark:text-gray-200 font-medium hover:text-primary dark:hover:text-indigo-400 md:mx-4 md:my-0"
             >
               About
             </div>
           </nuxt-link>
           <nuxt-link to="/products">
             <div
-              class="my-1 text-sm text-gray-700 dark:text-gray-200 font-medium hover:text-indigo-500 dark:hover:text-indigo-400 md:mx-4 md:my-0"
+              class="my-1 text-sm text-gray-700 dark:text-gray-200 font-medium hover:text-primary dark:hover:text-indigo-400 md:mx-4 md:my-0"
             >
               Products
             </div>
           </nuxt-link>
           <nuxt-link to='/#contact'>
-            <div class='my-1 text-sm text-gray-700 dark:text-gray-200 font-medium hover:text-indigo-500 dark:hover:text-indigo-400 md:mx-4 md:my-0'>Contact</div>
+            <div class='my-1 text-sm text-gray-700 dark:text-gray-200 font-medium hover:text-primary dark:hover:text-indigo-400 md:mx-4 md:my-0'>Contact</div>
           </nuxt-link>
         </div>
       </div>
@@ -70,6 +70,7 @@ import { Component, Vue } from 'nuxt-property-decorator'
 @Component
 export default class Header extends Vue {
   menuItemsVisible = false
+  backgroundImage = require('@/assets/logo-pink.png')
 
   mounted() {
     if (process.client) {

@@ -9,7 +9,7 @@
       <img
         class="object-cover w-full h-56"
         :data-src="image"
-        alt="avatar"
+        alt="baked goodness"
         v-lazy-load
       />
     </div>
@@ -53,7 +53,8 @@ export default class GalleryImage extends Vue {
   })
   imageData!: ImageDataModel
   loading = true
-  firebaseService: FirebaseService = new FirebaseService(this.$fire);
+  firebaseService: FirebaseService = new FirebaseService(this.$fire)
+  imageUrl = require('assets/placeholder.png')
 
   async mounted() {
     if (process.client) {
@@ -66,19 +67,20 @@ export default class GalleryImage extends Vue {
   }
 
   async retrieveImage() {
-
     this.imageData.image = await this.firebaseService.retrieveImage(
       this.imageData.category,
       this.imageData.imageFilename
     )
+    if (this.imageData.image !== '' && this.imageData.image != undefined) {
+      this.imageUrl = this.imageData.image
+    }
     this.loading = false
   }
 
   get image() {
-    return this.imageData.image
+    return this.imageUrl
   }
 }
 </script>
 
-<style lang="css" scoped>
-</style>
+<style lang="css" scoped></style>

@@ -9,7 +9,9 @@ export class FirebaseService {
     this.nuxtFire = nuxtFire
   }
 
-  public async retrieveImageInfo(collection: string): Promise<ImageDataModel[]> {
+  public async retrieveImageInfo(
+    collection: string
+  ): Promise<ImageDataModel[]> {
     try {
       let querySnapshot = await this.nuxtFire.firestore
         .collection(collection)

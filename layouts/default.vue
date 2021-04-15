@@ -6,10 +6,11 @@
 </template>
 <script lang='ts'>
 import { Component, Vue } from 'nuxt-property-decorator'
+import { FirebaseService } from '~/services/FirebaseService'
 
 @Component
 export default class Default extends Vue {
-  mounted() {
+  async mounted() {
     if(process.client) {
       this.$fire.analytics;
       this.$fire.performance;
@@ -17,7 +18,7 @@ export default class Default extends Vue {
   }
 }
 </script>
-<style>
+<style lang='scss'>
 html {
   font-family: 'Source Sans Pro', -apple-system, BlinkMacSystemFont, 'Segoe UI',
     Roboto, 'Helvetica Neue', Arial, sans-serif;

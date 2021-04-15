@@ -3,7 +3,7 @@
     class="bg-white dark:bg-gray-800 p-4 sm:p-12 flex flex-col justify-center"
     :style="heightStyle"
   >
-    <div class="container mx-auto px-6 py-8">
+    <div class="justify-center mx-auto px-6 py-8">
       <div class="lg:flex items-center">
         <div class="lg:w-1/2">
           <h2
@@ -27,8 +27,8 @@
           </p>
         </div>
 
-        <div class="mt-8 lg:mt-0 lg:w-1/2">
-          <div class="flex items-center justify-center lg:justify-end">
+        <div class="mt-8 lg:mt-0 lg:w-1/2 px-4">
+          <div class="flex items-center justify-center">
             <div class="max-w-lg">
               <img
                 class="w-full h-64 object-cover object-center rounded-md shadow"
