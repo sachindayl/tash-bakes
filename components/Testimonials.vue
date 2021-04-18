@@ -1,6 +1,6 @@
 <template>
   <section
-    class="md:mb-12 mt-12 my-6 md:p-4 py-12 flex flex-col justify-center"
+    class="md:mb-12 md:mt-12 my-2 md:my-6 md:p-4 py-4 md:py-12 flex flex-col justify-center"
     :style="heightStyle"
   >
     <h2
@@ -8,10 +8,10 @@
     >
       Testimonials
     </h2>
-    <div v-if="loading">Loading...</div>
+    <div v-if="loading"><SpinnerDoubleBounce></SpinnerDoubleBounce></div>
     <div v-else>
-      <client-only placeholder="Loading...">
-        <div class="p-12 m-4 content-center justify-center items-center">
+      <client-only>
+        <div class="p-12 content-center justify-center items-center">
           <agile
             :slidesToShow="isMobile ? 1 : 3"
             :dots="false"
@@ -65,7 +65,6 @@
 
 <script lang="ts">
 import { Component, Vue } from 'nuxt-property-decorator'
-import { TestimonialI } from '../pages/index.vue'
 import { TestimonialModel } from '~/data/models/TestimonialModel'
 import { FirebaseService } from '~/services/FirebaseService'
 
