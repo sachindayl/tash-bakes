@@ -56,8 +56,7 @@ export interface ProductI {
 }
 
 export interface TestimonialI {
-  customerName: string
-  subject: string
+  name: string
   message: string
   image: string
 }

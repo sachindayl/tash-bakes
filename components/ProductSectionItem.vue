@@ -1,7 +1,7 @@
 <template>
   <nuxt-link to="/products">
     <div class="flex justify-center flex-col text-center p-4">
-      <div class="w-64 lg:w-128 bg-gray-300 rounded-lg object-cover">
+      <div class="w-64 lg:w-96 xl:w-128 bg-gray-300 rounded-lg object-cover">
         <img
           class="bg-center h-32 w-64 lg:w-128 lg:h-64 object-cover rounded-lg shadow-md"
           :src="imageUrl"
@@ -10,7 +10,7 @@
       </div>
 
       <div
-        class="w-56 -mt-10 mx-auto justify-center overflow-hidden bg-white rounded-lg shadow-lg md:w-64 dark:bg-gray-800"
+        class="w-48 lg:w-64 -mt-10 mx-auto justify-center overflow-hidden bg-white rounded-lg shadow-lg dark:bg-gray-800"
       >
         <h3
           class="py-2 font-bold tracking-wide text-center text-gray-800 uppercase dark:text-white"

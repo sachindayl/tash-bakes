@@ -38,15 +38,7 @@ export default {
         href: '/favicon-16x16.png',
       },
       { rel: 'manifest', href: '/site.webmanifest' },
-      { rel: 'icon', type: 'image/x-icon', href: '/favicon.ico' },
-      {
-        rel: 'stylesheet',
-        href: 'https://fonts.googleapis.com/css2?family=Playball&display=swap',
-      },
-      {
-        rel: 'preconnect',
-        href: 'https://firebase.googleapis.com',
-      },
+      { rel: 'icon', type: 'image/x-icon', href: '/favicon.ico' }
     ],
   },
 
@@ -54,7 +46,8 @@ export default {
   css: ['~assets/css/global.css'],
 
   // Plugins to run before rendering page: https://go.nuxtjs.dev/config-plugins
-  plugins: [{ src: '~/plugins/vue-fb-customer-chat.js', ssr: false }],
+  plugins: [{ src: '~/plugins/vue-fb-customer-chat.js', ssr: false }, '~/plugins/vue-agile'
+  ],
 
   components: true,
 
@@ -113,6 +106,7 @@ export default {
         autoprefixer: {},
       }
     },
+    transpile: ['vue-agile']
   },
 
   env: {

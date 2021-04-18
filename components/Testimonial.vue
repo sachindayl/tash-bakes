@@ -10,12 +10,6 @@
       />
     </div>
 
-    <h2
-      class="mt-2 text-2xl font-semibold text-gray-800 dark:text-white md:mt-0 md:text-3xl"
-    >
-      {{ testimonial.subject }}
-    </h2>
-
     <p class="mt-2 text-gray-600 dark:text-gray-200 text-left">
       {{ testimonial.message }}
     </p>
@@ -24,7 +18,7 @@
       <a
         href="#"
         class="text-xl font-medium text-primary dark:text-orange-300"
-        >{{ testimonial.customerName }}</a
+        >{{ testimonial.name }}</a
       >
     </div>
   </div>

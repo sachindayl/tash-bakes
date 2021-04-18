@@ -1,6 +1,7 @@
 import { NuxtFireInstance } from '@nuxtjs/firebase'
 import { ImageDataModel } from '~/data/models/ImageDataModel'
 import { PriceDataModel } from '~/data/models/priceDataModel'
+import { TestimonialModel } from '~/data/models/TestimonialModel'
 
 export class FirebaseService {
   private nuxtFire: NuxtFireInstance
@@ -52,5 +53,33 @@ export class FirebaseService {
       .child(imageName)
       .getDownloadURL()
     return url as string
+  }
+
+  public async retrieveTestimonials() {
+    try {
+      let querySnapshot = await this.nuxtFire.firestore
+        .collection('testimonials')
+        .get({ source: 'cache' })
+      querySnapshot = querySnapshot.empty
+        ? await this.nuxtFire.firestore
+            .collection('testimonials')
+            .get({ source: 'default' })
+        : querySnapshot
+
+      let testimonialList: TestimonialModel[] = []
+      querySnapshot.forEach((doc) => {
+        testimonialList.push(
+          new TestimonialModel(
+            doc.data().name,
+            doc.data().image,
+            doc.data().message
+          )
+        )
+      })
+      return testimonialList
+    } catch (e) {
+      console.log(JSON.stringify(e))
+      return Promise.reject(e)
+    }
   }
 }
