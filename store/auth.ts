@@ -11,7 +11,7 @@ export interface AuthUserI {
   namespaced: true,
 })
 class Auth extends VuexModule {
-  userState: AuthUserI = { uid: '', email: '' }
+  userState = ''
   claims: any
 
   get authUser() {
@@ -19,23 +19,16 @@ class Auth extends VuexModule {
   }
 
   @Mutation
-  ON_AUTH_STATE_CHANGED_MUTATION(authUser: any, claims: any) {
-    if (authUser) {
+  public setUser(authUser: string) {
       this.userState = authUser
-      this.claims = claims
-    } else {
-      //logout
-    }
   }
 
   @Action
-  async onAuthStateChangedAction(authUser: any, claims: any) {
-    if (authUser) {
-      this.ON_AUTH_STATE_CHANGED_MUTATION(authUser, claims)
-    } else {
-      //logout
-    }
+  async updateUser(authUser: string) {
+    await this.context.commit('setUser', authUser)
   }
 
 
 }
+
+export default Auth;

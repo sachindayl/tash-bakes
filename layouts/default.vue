@@ -1,24 +1,31 @@
 <template>
   <div>
-    <Nuxt keep-alive/>
-    <Footer class='pt-2'></Footer>
+    <Nuxt keep-alive />
+    <Footer class="pt-2"></Footer>
   </div>
 </template>
-<script lang='ts'>
+<script lang="ts">
 import { Component, Vue } from 'nuxt-property-decorator'
-import { FirebaseService } from '~/services/FirebaseService'
 
 @Component
 export default class Default extends Vue {
   async mounted() {
-    if(process.client) {
-      this.$fire.analytics;
-      this.$fire.performance;
+    if (process.client) {
+      this.$fire.auth.signInAnonymously().then(() =>
+        this.$fire.auth.onAuthStateChanged((user) => {
+          if (user) {
+            console.log('user signed in')
+            this.$store.dispatch('auth/updateUser', user.uid)
+          }
+        })
+      )
+      this.$fire.analytics
+      this.$fire.performance
     }
   }
 }
 </script>
-<style lang='scss'>
+<style lang="scss">
 html {
   font-family: 'Source Sans Pro', -apple-system, BlinkMacSystemFont, 'Segoe UI',
     Roboto, 'Helvetica Neue', Arial, sans-serif;
@@ -32,8 +39,6 @@ html {
   scroll-behavior: smooth;
   -webkit-overflow-scrolling: touch;
 }
-
-
 
 *,
 *::before,
