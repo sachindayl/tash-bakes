@@ -3,11 +3,11 @@
     class="bg-white dark:bg-gray-800 p-4 sm:p-12 flex flex-col justify-center"
     :style="heightStyle"
   >
-    <div class="justify-center mx-auto px-6 py-8">
+    <div class="justify-center mx-auto px-6">
       <div class="lg:flex items-center">
         <div class="lg:w-1/2">
           <h2
-            class="subs-title lg:max-w-md animate-wiggle text-center text-gray-800 dark:text-gray-100 text-3xl font-bold"
+            class="pb-4 subs-title lg:max-w-md animate-wiggle text-center text-gray-800 dark:text-gray-100 text-3xl font-bold"
           >
             About Me
           </h2>

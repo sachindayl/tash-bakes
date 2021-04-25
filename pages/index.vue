@@ -37,6 +37,7 @@
             </a>
           </div>
         </div>
+        <SeasonalProducts></SeasonalProducts>
         <About id="about"></About>
         <ProductsSection id="products" class="mb-10"></ProductsSection>
         <Testimonials></Testimonials>

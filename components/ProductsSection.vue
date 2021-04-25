@@ -1,6 +1,6 @@
 <template>
   <div
-    class="mt-4 mb-24 mx-auto w-full bg-fixed flex flex-col justify-center object-center"
+    class="mb-24 mx-auto w-full bg-fixed flex flex-col justify-center object-center"
     :style="backgroundImage"
   >
     <div :class="titleClass">Products</div>
@@ -30,8 +30,8 @@ export default class Products extends Vue {
       const width = window.innerWidth
       if (width < 600) {
         return {
-          background: 'url(' + require('@/assets/aqua.webp') + ')',
-          height: '900px',
+          background: 'url(' + require('@/assets/yellow_blue.webp') + ')',
+          'min-height': '900px',
           backgroundRepeat: 'no-repeat',
           width: '100%',
           backgroundSize: 'cover',
@@ -42,8 +42,8 @@ export default class Products extends Vue {
         }
       } else {
         return {
-          backgroundImage: 'url(' + require('@/assets/aqua.webp') + ')',
-          height: '700px',
+          backgroundImage: 'url(' + require('@/assets/yellow_blue.webp') + ')',
+          'min-height': '700px',
           backgroundRepeat: 'no-repeat',
           width: '100%',
           backgroundSize: 'cover',
@@ -60,12 +60,12 @@ export default class Products extends Vue {
     return [
       {
         name: 'Cupcakes',
-        image: 'IMG_4826_1.webp',
+        image: 'orange_roses.webp',
         price: '$20',
       },
       {
         name: 'Cakes',
-        image: 'IMG_6156_1.webp',
+        image: 'baby_shark.webp',
         price: '$60',
       },
     ]

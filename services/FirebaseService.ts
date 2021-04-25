@@ -2,6 +2,7 @@ import { NuxtFireInstance } from '@nuxtjs/firebase'
 import { ImageDataModel } from '~/data/models/ImageDataModel'
 import { PriceDataModel } from '~/data/models/priceDataModel'
 import { TestimonialModel } from '~/data/models/TestimonialModel'
+import { SeasonalDataModel } from '~/data/models/SeasonalDataModel'
 
 export class FirebaseService {
   private nuxtFire: NuxtFireInstance
@@ -45,9 +46,9 @@ export class FirebaseService {
     folderName: string,
     imageName: string
   ): Promise<string> {
-    if (process.env.environ === 'development') {
-      return ''
-    }
+    // if (process.env.environ === 'development') {
+    //   return ''
+    // }
     const url = await this.nuxtFire.storage
       .ref(folderName)
       .child(imageName)
@@ -77,6 +78,41 @@ export class FirebaseService {
         )
       })
       return testimonialList
+    } catch (e) {
+      console.log(JSON.stringify(e))
+      return Promise.reject(e)
+    }
+  }
+
+  public async retrieveSeasonalProductsInfo() {
+    try {
+      let querySnapshot = await this.nuxtFire.firestore
+        .collection('seasonal')
+        .where('isVisible', '==', true)
+        .get({ source: 'cache' })
+      querySnapshot = querySnapshot.empty
+        ? await this.nuxtFire.firestore
+            .collection('seasonal')
+            .where('isVisible', '==', true)
+            .get({ source: 'default' })
+        : querySnapshot
+
+      let seasonalList: SeasonalDataModel[] = []
+      querySnapshot.forEach((doc) => {
+        seasonalList.push(
+          new SeasonalDataModel(
+            doc.data().name,
+            doc.data().caption,
+            doc.data().price,
+            doc.data().isVisible,
+            doc.data().image,
+            doc.data().type,
+            doc.data().colour ?? '#FFFFFF',
+            doc.data().colour2 ?? '#FFFFFF'
+          )
+        )
+      })
+      return seasonalList
     } catch (e) {
       console.log(JSON.stringify(e))
       return Promise.reject(e)
