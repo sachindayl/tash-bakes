@@ -1,5 +1,5 @@
 <template>
-  <section v-show='seasonalList.length > 0' :style="containerStyle" class="py-24">
+  <section v-show='seasonalList.length > 0' :style="containerStyle" class="py-24 px-8">
     <h2
       class="p-4 pb-12 subs-title animate-wiggle text-3xl font-semibold text-center text-gray-800 dark:text-white"
     >
