@@ -13,6 +13,12 @@ export default {
       { charset: 'utf-8' },
       { name: 'viewport', content: 'width=device-width, initial-scale=1' },
       {
+        hid: 'keywords',
+        name: 'keywords',
+        content:
+          'Cakes, Cupcakes, Baking, Bake, Waterloo, Kitchener, Toronto, Birthdays, Weddings',
+      },
+      {
         hid: 'description',
         name: 'description',
         content:
@@ -38,7 +44,7 @@ export default {
         href: '/favicon-16x16.png',
       },
       { rel: 'manifest', href: '/site.webmanifest' },
-      { rel: 'icon', type: 'image/x-icon', href: '/favicon.ico' }
+      { rel: 'icon', type: 'image/x-icon', href: '/favicon.ico' },
     ],
   },
 
@@ -46,7 +52,9 @@ export default {
   css: ['~assets/css/global.css'],
 
   // Plugins to run before rendering page: https://go.nuxtjs.dev/config-plugins
-  plugins: [{ src: '~/plugins/vue-fb-customer-chat.js', ssr: false }, '~/plugins/vue-agile'
+  plugins: [
+    { src: '~/plugins/vue-fb-customer-chat.js', ssr: false },
+    '~/plugins/vue-agile',
   ],
 
   components: true,
@@ -55,7 +63,7 @@ export default {
     '@nuxt/typescript-build',
     '@nuxtjs/tailwindcss',
     '@nuxtjs/device',
-    '@nuxt/postcss8'
+    '@nuxt/postcss8',
   ],
 
   // Modules: https://go.nuxtjs.dev/config-modules
@@ -91,7 +99,7 @@ export default {
       storage: true,
       firestore: true,
       performance: true,
-      auth: true
+      auth: true,
     },
   },
 
@@ -105,9 +113,9 @@ export default {
         'postcss-import': true,
         tailwindcss: {},
         autoprefixer: {},
-      }
+      },
     },
-    transpile: ['vue-agile']
+    transpile: ['vue-agile'],
   },
 
   env: {
@@ -119,6 +127,6 @@ export default {
 
   tailwindcss: {
     exposeConfig: true,
-    jit: true
+    jit: false,
   },
 }

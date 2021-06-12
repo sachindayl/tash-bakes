@@ -202,8 +202,6 @@ export default class Contact extends Vue {
   }
   dialog = false
 
-  async mounted() {}
-
   get backgroundImage() {
     if (process.client) {
       const width = window.innerWidth

@@ -44,7 +44,7 @@ export default class Product extends Vue {
 
   imageUrl = require('assets/placeholder.png')
 
-  async mounted() {
+  async fetch() {
     if (process.client) {
       await this.retrieveImageUrl()
     }

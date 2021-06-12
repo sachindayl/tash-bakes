@@ -6,6 +6,7 @@
 </template>
 <script lang="ts">
 import { Component, Vue } from 'nuxt-property-decorator'
+import { authStore } from '~/utils/store-accessor'
 
 @Component
 export default class Default extends Vue {
@@ -14,8 +15,8 @@ export default class Default extends Vue {
       this.$fire.auth.signInAnonymously().then(() =>
         this.$fire.auth.onAuthStateChanged((user) => {
           if (user) {
-            console.log('user signed in')
-            this.$store.dispatch('auth/updateUser', user.uid)
+            console.log(user.uid)
+            authStore.setUser(user.uid)
           }
         })
       )

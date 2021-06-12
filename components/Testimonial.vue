@@ -37,7 +37,7 @@ export default class Testimonial extends Vue {
   readonly testimonial!: TestimonialI
   imageUrl = require('assets/placeholder.png')
 
-  async mounted() {
+  async fetch() {
     if (process.client) {
       await this.retrieveImageUrl()
     }

@@ -8,27 +8,26 @@ export interface AuthUserI {
 @Module({
   name: 'auth',
   stateFactory: true,
-  namespaced: true,
+  namespaced: true
 })
 class Auth extends VuexModule {
   userState = ''
   claims: any
 
   get authUser() {
-    return this.userState;
+    return this.userState
   }
 
   @Mutation
   public setUser(authUser: string) {
-      this.userState = authUser
+    this.userState = authUser
   }
 
-  @Action
+  @Action({ commit: 'setUser', rawError: true})
   async updateUser(authUser: string) {
-    await this.context.commit('setUser', authUser)
+    return authUser
   }
-
 
 }
 
-export default Auth;
+export default Auth
