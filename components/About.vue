@@ -53,7 +53,7 @@ import { FirebaseService } from '~/services/FirebaseService'
 export default class About extends Vue {
   imageUrl = require('assets/placeholder.png')
 
-  async fetch() {
+  async mounted() {
     if (process.client) {
       await this.retrieveImage()
     }

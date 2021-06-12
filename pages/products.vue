@@ -60,7 +60,7 @@ export default class Gallery extends Vue {
   cupcakesList: ImageDataI[] = []
   imageUrl = require('assets/placeholder.png')
 
-  async fetch() {
+  async mounted() {
     if (process.client) {
       await this.retrieveImageData()
     }

@@ -31,7 +31,7 @@ import { SeasonalDataModel } from '~/data/models/SeasonalDataModel'
 export default class SeasonalProducts extends Vue {
   seasonalList: SeasonalDataModel[] = []
 
-  async fetch() {
+  async mounted() {
     if (process.client) {
       const firebaseService = new FirebaseService(this.$fire)
       this.seasonalList = await firebaseService.retrieveSeasonalProductsInfo()

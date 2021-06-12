@@ -12,14 +12,15 @@ import { authStore } from '~/utils/store-accessor'
 export default class Default extends Vue {
   async mounted() {
     if (process.client) {
-      this.$fire.auth.signInAnonymously().then(() =>
-        this.$fire.auth.onAuthStateChanged((user) => {
-          if (user) {
+      await this.$fire.auth.signInAnonymously()
+      this.$fire.auth.onAuthStateChanged((user) => {
+        if (user) {
+          if(process.env.environ != 'production') {
             console.log(user.uid)
-            authStore.setUser(user.uid)
           }
-        })
-      )
+          authStore.setUser(user.uid)
+        }
+      })
       this.$fire.analytics
       this.$fire.performance
     }

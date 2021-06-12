@@ -1,7 +1,7 @@
 <template>
 </template>
 
-<script lang="ts">
+<script lang='ts'>
 import { Component, PropSync, Vue } from 'nuxt-property-decorator'
 import { FirebaseService } from '~/services/FirebaseService'
 
@@ -13,12 +13,14 @@ export default class Modal extends Vue {
   imageSrc?: any
   placeholder = require('assets/placeholder.png')
 
-  async fetch() {
+  async mounted() {
     if (process.client) {
       try {
         await this.retrieveImage()
       } catch (e) {
-        console.log(e)
+        if (process.env.environ != 'production') {
+          console.log(e)
+        }
       }
     }
   }
@@ -37,7 +39,7 @@ export default class Modal extends Vue {
 }
 </script>
 
-<style lang="scss" scoped>
+<style lang='scss' scoped>
 .modal-mask {
   position: fixed;
   z-index: 9998;

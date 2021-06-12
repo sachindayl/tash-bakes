@@ -3,10 +3,9 @@
     class='max-w-xs mx-auto overflow-hidden bg-white rounded-lg shadow-lg dark:bg-gray-800'
     @click='itemImageUrl(imageUrl)'
   >
-    <div v-if='$fetchState.pending' class='text-center'>
+    <div v-if='loading' class='text-center'>
       <SpinnerDoubleBounce></SpinnerDoubleBounce>
     </div>
-    <div v-else-if="$fetchState.error" class='text-center'>An error occurred.</div>
     <div v-else>
       <img
         class='object-cover w-full h-56'
@@ -49,6 +48,7 @@
 import { Component, Emit, PropSync, Vue } from 'nuxt-property-decorator'
 import { FirebaseService } from '~/services/FirebaseService'
 import { ImageDataModel } from '~/data/models/ImageDataModel'
+const config = require('~/nuxt.config.js')
 
 @Component
 export default class GalleryImage extends Vue {
@@ -60,13 +60,16 @@ export default class GalleryImage extends Vue {
   firebaseService: FirebaseService = new FirebaseService(this.$fire)
   imageUrl = require('assets/placeholder.png')
 
-  async fetch() {
+  async mounted() {
     try {
       if (process.client) {
         await this.retrieveImage()
       }
     } catch (e) {
-      console.log(e)
+      if (config.isDev) {
+        console.log(e)
+      }
+
     }
   }
 

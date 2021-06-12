@@ -73,7 +73,7 @@ export default class Testimonials extends Vue {
   testimonialList: TestimonialModel[] = []
   loading = true
 
-  async fetch() {
+  async mounted() {
     if (process.client) {
       await this.retrieveTestimonials()
     }
