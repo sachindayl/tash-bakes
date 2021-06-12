@@ -1,20 +1,36 @@
 <template>
   <div>
-    <Nuxt />
+    <Nuxt keep-alive />
+    <Footer class="pt-2"></Footer>
   </div>
 </template>
+<script lang="ts">
+import { Component, Vue } from 'nuxt-property-decorator'
+import { authStore } from '~/utils/store-accessor'
 
-<style>
+@Component
+export default class Default extends Vue {
+  async mounted() {
+    if (process.client) {
+      await this.$fire.auth.signInAnonymously()
+      this.$fire.auth.onAuthStateChanged((user) => {
+        if (user) {
+          if(process.env.environ != 'production') {
+            console.log(user.uid)
+          }
+          authStore.setUser(user.uid)
+        }
+      })
+      this.$fire.analytics
+      this.$fire.performance
+    }
+  }
+}
+</script>
+<style lang="scss">
 html {
-  font-family:
-    'Source Sans Pro',
-    -apple-system,
-    BlinkMacSystemFont,
-    'Segoe UI',
-    Roboto,
-    'Helvetica Neue',
-    Arial,
-    sans-serif;
+  font-family: 'Source Sans Pro', -apple-system, BlinkMacSystemFont, 'Segoe UI',
+    Roboto, 'Helvetica Neue', Arial, sans-serif;
   font-size: 16px;
   word-spacing: 1px;
   -ms-text-size-adjust: 100%;
@@ -22,6 +38,8 @@ html {
   -moz-osx-font-smoothing: grayscale;
   -webkit-font-smoothing: antialiased;
   box-sizing: border-box;
+  scroll-behavior: smooth;
+  -webkit-overflow-scrolling: touch;
 }
 
 *,
