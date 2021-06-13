@@ -1,19 +1,19 @@
 <template>
   <section
-    class="bg-white dark:bg-gray-800 p-4 sm:p-12 flex flex-col justify-center"
-    :style="heightStyle"
+    class='bg-white dark:bg-gray-800 p-4 sm:p-12 flex flex-col justify-center'
+    :style='heightStyle'
   >
-    <div class="justify-center mx-auto px-6">
-      <div class="lg:flex items-center">
-        <div class="lg:w-1/2">
+    <div class='justify-center mx-auto px-6'>
+      <div class='lg:flex items-center'>
+        <div class='lg:w-1/2'>
           <h2
-            class="pb-4 subs-title lg:max-w-md animate-wiggle text-center text-gray-800 dark:text-gray-100 text-3xl font-bold"
+            class='pb-4 subs-title lg:max-w-md animate-wiggle text-center text-gray-800 dark:text-gray-100 text-3xl font-bold'
           >
             About Me
           </h2>
 
           <p
-            class="text-center md:text-justify text-gray-500 dark:text-gray-400 lg:max-w-md mt-4"
+            class='text-center md:text-justify text-gray-500 dark:text-gray-400 lg:max-w-md mt-4'
           >
             Hello! Welcome to my page! My name is Hithasha and I am a university
             student in Kitchener, Ontario. I started baking as a hobby and
@@ -27,15 +27,15 @@
           </p>
         </div>
 
-        <div class="mt-8 lg:mt-0 lg:w-1/2 px-4">
-          <div class="flex items-center justify-center">
-            <div class="max-w-lg">
+        <div class='mt-8 lg:mt-0 lg:w-1/2 px-4'>
+          <div class='flex items-center justify-center'>
+            <div class='max-w-lg'>
               <img
-                class="w-full h-64 object-cover object-center rounded-md shadow"
-                :src="imageUrl"
+                class='w-full h-64 object-cover object-center rounded-md shadow'
+                :src="aboutImg === '' ? imageUrl : aboutImg "
                 width='500px'
                 height='300px'
-                alt=""
+                alt=''
               />
             </div>
           </div>
@@ -45,19 +45,21 @@
   </section>
 </template>
 
-<script lang="ts">
-import { Component, NextTick, Vue } from 'nuxt-property-decorator'
+<script lang='ts'>
+import { Component, NextTick, Prop, Vue } from 'nuxt-property-decorator'
 import { FirebaseService } from '~/services/FirebaseService'
 
 @Component
 export default class About extends Vue {
+  @Prop({ required: true }) readonly aboutImg!: string
   imageUrl = require('assets/placeholder.png')
 
-  async mounted() {
-    if (process.client) {
-      await this.retrieveImage()
-    }
-  }
+  // async mounted() {
+  //   if (process.client) {
+  //     this.imageUrl = await this.retrieveImage()
+  //   }
+  // }
+
 
   get heightStyle() {
     if (process.client) {
@@ -70,14 +72,15 @@ export default class About extends Vue {
   async retrieveImage() {
     const firebaseImageUrl = await new FirebaseService(
       this.$fire
-    ).retrieveImage('testimonials', 'IMG_7659.webp')
+    ).retrieveImageUrl('testimonials', 'IMG_7659.webp')
     if (firebaseImageUrl !== '' && firebaseImageUrl != undefined) {
-      this.imageUrl = firebaseImageUrl
+      return firebaseImageUrl
     }
+    return require('assets/placeholder.png')
   }
 
   async sleep(ms: number) {
-    return new Promise(resolve => setTimeout(resolve, ms));
+    return new Promise(resolve => setTimeout(resolve, ms))
   }
 }
 </script>

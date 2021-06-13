@@ -54,7 +54,7 @@ export default class Product extends Vue {
     if (process.client) {
       const firebaseImageUrl = await new FirebaseService(
         this.$fire
-      ).retrieveImage('gallery', this.product.image)
+      ).retrieveImageUrl('gallery', this.product.image)
       if (firebaseImageUrl !== '' && firebaseImageUrl != undefined) {
         this.imageUrl = firebaseImageUrl
       }

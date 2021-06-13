@@ -45,7 +45,7 @@ export default class Testimonial extends Vue {
 
   async retrieveImageUrl() {
     const firebaseService = new FirebaseService(this.$fire)
-    const firebaseImageUrl = await firebaseService.retrieveImage(
+    const firebaseImageUrl = await firebaseService.retrieveImageUrl(
       'testimonials',
       this.testimonial.image
     )

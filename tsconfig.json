@@ -26,6 +26,7 @@
     "types": [
       "node",
       "@nuxt/types",
+      "@nuxt/image",
       "@nuxtjs/axios",
       "@types/node",
       "@nuxtjs/firebase"

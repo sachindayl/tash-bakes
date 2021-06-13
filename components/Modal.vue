@@ -26,7 +26,7 @@ export default class Modal extends Vue {
   }
 
   async retrieveImage() {
-    this.imageSrc = await this.firebaseService.retrieveImage('', this.imageUrl)
+    this.imageSrc = await this.firebaseService.retrieveImageUrl('', this.imageUrl)
     if (this.imageSrc !== '' && this.imageSrc != undefined) {
       this.placeholder = this.imageSrc
     }

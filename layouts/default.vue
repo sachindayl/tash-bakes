@@ -1,6 +1,6 @@
 <template>
   <div>
-    <Nuxt keep-alive />
+    <nuxt keep-alive :keep-alive-props="{ max: 10 }" />
     <Footer class="pt-2"></Footer>
   </div>
 </template>

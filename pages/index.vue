@@ -1,54 +1,60 @@
 <template>
   <div>
     <NavBar></NavBar>
-    <div class="main-container">
-      <div id="home" class="mx-auto">
+    <div class='main-container'>
+      <div id='home' class='mx-auto'>
         <div
-          class="w-full bg-fixed flex flex-col justify-center object-center py-24"
-          :style="backgroundImage"
+          class='w-full bg-fixed flex flex-col justify-center object-center py-24'
+          :style='backgroundImage'
         >
-          <div :class="titleStyle">Bakes by Tash</div>
-          <div :class="subtitleStyle">
+          <div :class='titleStyle'>Bakes by Tash</div>
+          <div :class='subtitleStyle'>
             Making you smile one cupcake at a time.
           </div>
           <div
-            @click=""
-            class="absolute bottom-0 text-white text-center font-semibold animate-pulse py-10"
-            style="
+            @click=''
+            class='absolute bottom-0 text-white text-center font-semibold animate-pulse py-10'
+            style='
               left: 50%;
               transform: translateX(-50%);
               margin-left: auto;
               margin-right: auto;
-            "
+            '
           >
-            <a href="#" v-scroll-to="'#about'">
+            <a href='#' v-scroll-to="'#about'">
               <svg
-                xmlns="http://www.w3.org/2000/svg"
-                width="40"
-                height="40"
-                fill="currentColor"
-                class="bi bi-arrow-down-circle-fill"
-                viewBox="0 0 16 16"
+                xmlns='http://www.w3.org/2000/svg'
+                width='40'
+                height='40'
+                fill='currentColor'
+                class='bi bi-arrow-down-circle-fill'
+                viewBox='0 0 16 16'
               >
                 <path
-                  d="M16 8A8 8 0 1 1 0 8a8 8 0 0 1 16 0zM8.5 4.5a.5.5 0 0 0-1 0v5.793L5.354 8.146a.5.5 0 1 0-.708.708l3 3a.5.5 0 0 0 .708 0l3-3a.5.5 0 0 0-.708-.708L8.5 10.293V4.5z"
+                  d='M16 8A8 8 0 1 1 0 8a8 8 0 0 1 16 0zM8.5 4.5a.5.5 0 0 0-1 0v5.793L5.354 8.146a.5.5 0 1 0-.708.708l3 3a.5.5 0 0 0 .708 0l3-3a.5.5 0 0 0-.708-.708L8.5 10.293V4.5z'
                 />
               </svg>
             </a>
           </div>
         </div>
-        <SeasonalProducts></SeasonalProducts>
-        <About id="about"></About>
-        <ProductsSection id="products" class="mb-10"></ProductsSection>
+        <transition name='fade'>
+          <div v-show='seasonalList.length > 0'>
+            <SeasonalProducts :seasonal-data.sync='seasonalList'></SeasonalProducts>
+          </div>
+        </transition>
+        <About id='about' :about-img='imageResponseModel.aboutMeImageUrl'></About>
+        <ProductsSection id='products' class='mb-10'></ProductsSection>
         <Testimonials></Testimonials>
-        <Contact id="contact"></Contact>
+        <Contact id='contact'></Contact>
       </div>
     </div>
   </div>
 </template>
 
-<script lang="ts">
+<script lang='ts'>
 import { Component, Vue } from 'nuxt-property-decorator'
+import { FirebaseService } from '~/services/FirebaseService'
+import { SeasonalDataModel } from '~/data/models/SeasonalDataModel'
 
 export interface ProductI {
   name: string
@@ -62,10 +68,39 @@ export interface TestimonialI {
   image: string
 }
 
+export interface ImageResponse {
+  aboutMeImageUrl: string;
+}
+
 @Component
 export default class Index extends Vue {
   titleStyle = 'heading animate-bounce text-center'
   subtitleStyle = '-mt-8 text-lg md:text-xl font-semibold text-center'
+  seasonalList: SeasonalDataModel[] = []
+  imageResponseModel: ImageResponse = {
+    aboutMeImageUrl: ''
+  }
+
+  // async asyncData({ app }: Context): Promise<ImageResponse> {
+  //   console.log('calling')
+  //
+  //   const firebaseImageUrl = await new FirebaseService(
+  //     app.$fire
+  //   ).retrieveImageUrl('testimonials', 'IMG_7659.webp')
+  //
+  //   return {
+  //     aboutMeImageUrl: firebaseImageUrl
+  //   }
+  // }
+
+  async mounted() {
+    const firebaseService = new FirebaseService(
+      this.$fire
+    )
+    this.imageResponseModel.aboutMeImageUrl = await this.retrieveImage('testimonials', 'IMG_7659.webp')
+    this.seasonalList = await firebaseService.retrieveSeasonalProductsInfo()
+    console.log(JSON.stringify(this.seasonalList))
+  }
 
   get backgroundImage() {
     if (process.client) {
@@ -78,7 +113,7 @@ export default class Index extends Vue {
         '-webkit-background-size': 'cover',
         '-moz-background-size': 'cover',
         '-o-background-size': 'cover',
-        '-webkit-transform': 'translateZ(0)',
+        '-webkit-transform': 'translateZ(0)'
       }
 
       this.titleStyle = 'heading animate-bounce text-center text-white'
@@ -87,6 +122,17 @@ export default class Index extends Vue {
       return image
     }
     return {}
+  }
+
+  async retrieveImage(imageFolder: string, imageName: string) {
+    console.log('called')
+    const firebaseImageUrl = await new FirebaseService(
+      this.$fire
+    ).retrieveImageUrl(imageFolder, imageName)
+    if (firebaseImageUrl !== '' && firebaseImageUrl != undefined) {
+      return firebaseImageUrl
+    }
+    return ''
   }
 }
 </script>
@@ -108,7 +154,7 @@ export default class Index extends Vue {
 
 .title {
   font-family: 'Quicksand', 'Source Sans Pro', -apple-system, BlinkMacSystemFont,
-    'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+  'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
   display: block;
   font-weight: 300;
   font-size: 100px;
@@ -183,4 +229,6 @@ export default class Index extends Vue {
     font-size: 36px;
   }
 }
+
+
 </style>

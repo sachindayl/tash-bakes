@@ -53,7 +53,7 @@ export default {
 
   // Plugins to run before rendering page: https://go.nuxtjs.dev/config-plugins
   plugins: [
-    { src: '~/plugins/vue-fb-customer-chat.js', ssr: false },
+    { src: '~/plugins/vue-fb-customer-chat.js', mode: 'client' },
     '~/plugins/vue-agile',
   ],
 
@@ -64,6 +64,7 @@ export default {
     '@nuxtjs/tailwindcss',
     '@nuxtjs/device',
     '@nuxt/postcss8',
+    '@nuxt/image',
   ],
 
   // Modules: https://go.nuxtjs.dev/config-modules

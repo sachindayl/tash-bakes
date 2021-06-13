@@ -42,7 +42,7 @@ export class FirebaseService {
     }
   }
 
-  public async retrieveImage(
+  public async retrieveImageUrl(
     folderName: string,
     imageName: string
   ): Promise<string> {

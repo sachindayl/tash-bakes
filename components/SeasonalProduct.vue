@@ -50,7 +50,7 @@ export default class SeasonalProduct extends Vue {
 
   async retrieveImageUrl() {
     const firebaseService = new FirebaseService(this.$fire)
-    const firebaseImageUrl = await firebaseService.retrieveImage(
+    const firebaseImageUrl = await firebaseService.retrieveImageUrl(
       this.seasonal.type,
       this.seasonal.image
     )

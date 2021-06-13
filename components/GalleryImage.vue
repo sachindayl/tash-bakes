@@ -80,7 +80,7 @@ export default class GalleryImage extends Vue {
   // }
 
   async retrieveImage() {
-    this.imageData.image = await this.firebaseService.retrieveImage(
+    this.imageData.image = await this.firebaseService.retrieveImageUrl(
       this.imageData.category,
       this.imageData.imageFilename
     )
