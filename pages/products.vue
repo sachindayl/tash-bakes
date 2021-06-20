@@ -58,7 +58,7 @@ export default class Gallery extends Vue {
   showModal = false
   cakesList: ImageDataI[] = []
   cupcakesList: ImageDataI[] = []
-  imageUrl = require('assets/placeholder.png')
+  imageUrl = require(`@${process.env.imagePath}/placeholder.png`)
 
   async mounted() {
     if (process.client) {

@@ -14,10 +14,11 @@
         </p>
       </div>
 
-      <img
+      <nuxt-img
         class='object-cover w-full h-48 mt-2'
         :src='imageUrl'
         alt='NIKE AIR'
+        quality='80'
       />
 
       <div class='flex items-center justify-between px-4 py-2 bg-gray-900'>
@@ -40,7 +41,7 @@ export default class SeasonalProduct extends Vue {
     type: Object as () => SeasonalDataI
   })
   readonly seasonal!: SeasonalDataI
-  imageUrl = require('assets/placeholder.png')
+  imageUrl = 'assets/placeholder.png'
 
   async mounted() {
     if (process.client) {

@@ -58,7 +58,7 @@ export default class GalleryImage extends Vue {
   imageData!: ImageDataModel
   loading = true
   firebaseService: FirebaseService = new FirebaseService(this.$fire)
-  imageUrl = require('assets/placeholder.png')
+  imageUrl = require(`${process.env.imagePath}/placeholder.png`)
 
   async mounted() {
     try {
@@ -72,12 +72,6 @@ export default class GalleryImage extends Vue {
 
     }
   }
-
-  // async mounted() {
-  //   if (process.client) {
-  //
-  //   }
-  // }
 
   async retrieveImage() {
     this.imageData.image = await this.firebaseService.retrieveImageUrl(

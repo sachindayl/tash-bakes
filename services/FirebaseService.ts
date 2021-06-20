@@ -20,8 +20,8 @@ export class FirebaseService {
         .get({ source: 'cache' })
       querySnapshot = querySnapshot.empty
         ? await this.nuxtFire.firestore
-            .collection(collection)
-            .get({ source: 'default' })
+          .collection(collection)
+          .get({ source: 'default' })
         : querySnapshot
 
       let imageDataList: ImageDataModel[] = []
@@ -36,10 +36,12 @@ export class FirebaseService {
         )
       })
       return imageDataList
+
     } catch (e) {
       console.log(JSON.stringify(e))
       return Promise.reject(e)
     }
+
   }
 
   public async retrieveImageUrl(
@@ -49,6 +51,8 @@ export class FirebaseService {
     // if (process.env.environ === 'development') {
     //   return ''
     // }
+
+
     const url = await this.nuxtFire.storage
       .ref(folderName)
       .child(imageName)
@@ -63,8 +67,8 @@ export class FirebaseService {
         .get({ source: 'cache' })
       querySnapshot = querySnapshot.empty
         ? await this.nuxtFire.firestore
-            .collection('testimonials')
-            .get({ source: 'default' })
+          .collection('testimonials')
+          .get({ source: 'default' })
         : querySnapshot
 
       let testimonialList: TestimonialModel[] = []
@@ -92,9 +96,9 @@ export class FirebaseService {
         .get({ source: 'cache' })
       querySnapshot = querySnapshot.empty
         ? await this.nuxtFire.firestore
-            .collection('seasonal')
-            .where('isVisible', '==', true)
-            .get({ source: 'default' })
+          .collection('seasonal')
+          .where('isVisible', '==', true)
+          .get({ source: 'default' })
         : querySnapshot
 
       let seasonalList: SeasonalDataModel[] = []

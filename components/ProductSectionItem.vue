@@ -2,10 +2,11 @@
   <nuxt-link to="/products">
     <div class="flex justify-center flex-col text-center p-4">
       <div class="w-64 lg:w-96 xl:w-128 bg-gray-300 rounded-lg object-cover">
-        <img
+        <nuxt-img
           class="bg-center h-32 w-64 lg:w-128 lg:h-64 object-cover rounded-lg shadow-md"
           :src="imageUrl"
           alt="product image"
+          quality='80'
         />
       </div>
 
@@ -42,7 +43,7 @@ export default class Product extends Vue {
   })
   readonly product!: ProductI
 
-  imageUrl = require('assets/placeholder.png')
+  imageUrl = 'assets/placeholder.png'
 
   async mounted() {
     if (process.client) {

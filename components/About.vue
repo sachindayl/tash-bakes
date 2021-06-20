@@ -27,15 +27,17 @@
           </p>
         </div>
 
-        <div class='mt-8 lg:mt-0 lg:w-1/2 px-4'>
+        <div class='mt-8 lg:mt-0 lg:w-1/2 px-4' v-show='aboutImg !== null || aboutImg === ""'>
           <div class='flex items-center justify-center'>
             <div class='max-w-lg'>
-              <img
+              <nuxt-img
                 class='w-full h-64 object-cover object-center rounded-md shadow'
-                :src="aboutImg === '' ? imageUrl : aboutImg "
-                width='500px'
-                height='300px'
-                alt=''
+                :src="aboutImg === '' ? imageUrl : aboutImg"
+                fit='cover'
+                quality='80'
+                width='400'
+                height='300'
+                alt='About'
               />
             </div>
           </div>
@@ -52,14 +54,7 @@ import { FirebaseService } from '~/services/FirebaseService'
 @Component
 export default class About extends Vue {
   @Prop({ required: true }) readonly aboutImg!: string
-  imageUrl = require('assets/placeholder.png')
-
-  // async mounted() {
-  //   if (process.client) {
-  //     this.imageUrl = await this.retrieveImage()
-  //   }
-  // }
-
+  imageUrl = `assets/placeholder.png`
 
   get heightStyle() {
     if (process.client) {
@@ -67,20 +62,6 @@ export default class About extends Vue {
       return width < 600 ? 'height: 950px' : 'height: 700px'
     }
     return ''
-  }
-
-  async retrieveImage() {
-    const firebaseImageUrl = await new FirebaseService(
-      this.$fire
-    ).retrieveImageUrl('testimonials', 'IMG_7659.webp')
-    if (firebaseImageUrl !== '' && firebaseImageUrl != undefined) {
-      return firebaseImageUrl
-    }
-    return require('assets/placeholder.png')
-  }
-
-  async sleep(ms: number) {
-    return new Promise(resolve => setTimeout(resolve, ms))
   }
 }
 </script>

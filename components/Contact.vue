@@ -207,7 +207,7 @@ export default class Contact extends Vue {
       const width = window.innerWidth
       if (width < 600) {
         return {
-          background: 'url(' + require('@/assets/owls2.webp') + ')',
+          background: 'url(' + require('@/static/assets/owls2.webp') + ')',
           height: '1200px',
           backgroundRepeat: 'no-repeat',
           width: '100%',
@@ -219,7 +219,7 @@ export default class Contact extends Vue {
         }
       } else {
         return {
-          backgroundImage: 'url(' + require('@/assets/owls2.webp') + ')',
+          backgroundImage: 'url(' + require('@/static/assets/owls2.webp') + ')',
           height: '900px',
           backgroundRepeat: 'no-repeat',
           width: '100%',

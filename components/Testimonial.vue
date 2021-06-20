@@ -3,9 +3,10 @@
     class="max-w-md px-8 py-4 mx-auto bg-gray-100 rounded-lg shadow-lg dark:bg-gray-800"
   >
     <div class="flex justify-center -mt-16 md:justify-end">
-      <img
+      <nuxt-img
         class="object-cover w-20 h-20 border-2 border-primary rounded-full dark:border-red-300"
         alt="Testimonial avatar"
+        quality='80'
         :src="imageUrl"
       />
     </div>
@@ -35,7 +36,7 @@ export default class Testimonial extends Vue {
     type: Object as () => TestimonialI,
   })
   readonly testimonial!: TestimonialI
-  imageUrl = require('assets/placeholder.png')
+  imageUrl = 'assets/placeholder.png'
 
   async mounted() {
     if (process.client) {

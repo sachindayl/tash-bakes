@@ -1,36 +1,42 @@
 <template>
-  <div>
-    <nuxt keep-alive :keep-alive-props="{ max: 10 }" />
-    <Footer class="pt-2"></Footer>
+  <div v-if='loggedIn'>
+    <nuxt keep-alive :keep-alive-props='{ max: 10 }' />
+    <Footer class='pt-2'></Footer>
   </div>
 </template>
-<script lang="ts">
+<script lang='ts'>
 import { Component, Vue } from 'nuxt-property-decorator'
 import { authStore } from '~/utils/store-accessor'
 
 @Component
 export default class Default extends Vue {
-  async mounted() {
+  loggedIn  = false;
+
+  mounted() {
     if (process.client) {
-      await this.$fire.auth.signInAnonymously()
-      this.$fire.auth.onAuthStateChanged((user) => {
-        if (user) {
-          if(process.env.environ != 'production') {
-            console.log(user.uid)
+      this.$fire.auth.signInAnonymously().then(anonymousSignIn => {
+          if (anonymousSignIn.user) {
+            authStore.setUser(anonymousSignIn.user.uid)
+            this.loggedIn = true;
+            this.$fire.analytics
+            this.$fire.performance
           }
-          authStore.setUser(user.uid)
         }
+      ).catch((error) => {
+        const errorCode = error.code
+        const errorMessage = error.message
+        // console.log(`auth Error: ${errorCode} ${errorMessage}`)
       })
-      this.$fire.analytics
-      this.$fire.performance
+
     }
   }
+
 }
 </script>
-<style lang="scss">
+<style lang='scss'>
 html {
   font-family: 'Source Sans Pro', -apple-system, BlinkMacSystemFont, 'Segoe UI',
-    Roboto, 'Helvetica Neue', Arial, sans-serif;
+  Roboto, 'Helvetica Neue', Arial, sans-serif;
   font-size: 16px;
   word-spacing: 1px;
   -ms-text-size-adjust: 100%;

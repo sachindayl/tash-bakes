@@ -7,7 +7,7 @@
             <div
               class="navbar-heading text-gray-800 dark:text-white text-xl font-bold md:text-2xl hover:text-gray-700 dark:hover:text-gray-300"
             >
-              <img :src="backgroundImage" class='h-12 sm:h-16' alt="Bakes by Tash"/>
+              <nuxt-img :src="backgroundImage" class='h-12 sm:h-16' alt="Bakes by Tash"/>
             </div>
           </nuxt-link>
         </div>
@@ -70,7 +70,7 @@ import { Component, Vue } from 'nuxt-property-decorator'
 @Component
 export default class Header extends Vue {
   menuItemsVisible = false
-  backgroundImage = require('@/assets/logo-pink.png')
+  backgroundImage = 'assets/logo-pink.png'
 
   mounted() {
     if (process.client) {

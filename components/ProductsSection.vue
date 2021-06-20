@@ -30,7 +30,7 @@ export default class Products extends Vue {
       const width = window.innerWidth
       if (width < 600) {
         return {
-          background: 'url(' + require('@/assets/yellow_blue.webp') + ')',
+          background: 'url(' + require(`@${process.env.imagePath}/yellow_blue.webp`) + ')',
           'min-height': '900px',
           backgroundRepeat: 'no-repeat',
           width: '100%',
@@ -42,7 +42,7 @@ export default class Products extends Vue {
         }
       } else {
         return {
-          backgroundImage: 'url(' + require('@/assets/yellow_blue.webp') + ')',
+          backgroundImage: 'url(' + require(`@${process.env.imagePath}/yellow_blue.webp`) + ')',
           'min-height': '700px',
           backgroundRepeat: 'no-repeat',
           width: '100%',

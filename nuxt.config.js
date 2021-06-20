@@ -45,11 +45,25 @@ export default {
       },
       { rel: 'manifest', href: '/site.webmanifest' },
       { rel: 'icon', type: 'image/x-icon', href: '/favicon.ico' },
+
+      {
+        rel: 'preload',
+        as: 'image',
+        type: 'image/webp',
+        href: 'static/assets/sunset-wallpaper.webp',
+        crossOrigin: true,
+      },
+      {
+        rel: 'preload',
+        href:
+          'static/assets/fonts/MilkyNice.ttf',
+        as: 'style',
+      }
     ],
   },
 
   // Global CSS: https://go.nuxtjs.dev/config-css
-  css: ['~assets/css/global.css'],
+  css: ['~static/assets/css/global.css'],
 
   // Plugins to run before rendering page: https://go.nuxtjs.dev/config-plugins
   plugins: [
@@ -124,10 +138,22 @@ export default {
     serviceId: 'service_va9yyy8',
     templateId: 'template_3tl879f',
     userId: 'user_49xVOX2trBOy3FkIZpaWa',
+    imagePath: '/static/assets',
   },
 
   tailwindcss: {
     exposeConfig: true,
     jit: false,
+  },
+
+  image: {
+    presets: {
+      cover: {
+        modifiers: {
+          fit: "cover",
+          format: "webp",
+        },
+      },
+    },
   },
 }

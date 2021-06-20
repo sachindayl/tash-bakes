@@ -81,31 +81,20 @@ export default class Index extends Vue {
     aboutMeImageUrl: ''
   }
 
-  // async asyncData({ app }: Context): Promise<ImageResponse> {
-  //   console.log('calling')
-  //
-  //   const firebaseImageUrl = await new FirebaseService(
-  //     app.$fire
-  //   ).retrieveImageUrl('testimonials', 'IMG_7659.webp')
-  //
-  //   return {
-  //     aboutMeImageUrl: firebaseImageUrl
-  //   }
-  // }
-
   async mounted() {
-    const firebaseService = new FirebaseService(
-      this.$fire
-    )
-    this.imageResponseModel.aboutMeImageUrl = await this.retrieveImage('testimonials', 'IMG_7659.webp')
-    this.seasonalList = await firebaseService.retrieveSeasonalProductsInfo()
-    console.log(JSON.stringify(this.seasonalList))
+    if(process.client) {
+      const firebaseService = new FirebaseService(
+        this.$fire
+      )
+      this.imageResponseModel.aboutMeImageUrl = await this.retrieveImage('testimonials', 'IMG_7659.webp')
+      this.seasonalList = await firebaseService.retrieveSeasonalProductsInfo()
+    }
   }
 
   get backgroundImage() {
     if (process.client) {
       const image = {
-        background: 'url(' + require('@/assets/sunset-wallpaper.webp') + ')',
+        background: 'url(' + require('@/static/assets/sunset-wallpaper.webp') + ')',
         height: '100vh',
         backgroundRepeat: 'no-repeat',
         width: '100%',
@@ -125,7 +114,6 @@ export default class Index extends Vue {
   }
 
   async retrieveImage(imageFolder: string, imageName: string) {
-    console.log('called')
     const firebaseImageUrl = await new FirebaseService(
       this.$fire
     ).retrieveImageUrl(imageFolder, imageName)

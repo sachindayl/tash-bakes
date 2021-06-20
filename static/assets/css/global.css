@@ -1,7 +1,7 @@
 @font-face {
   font-family: "MilkyNice";
   src: local("MilkyNice"),
-  url(~assets/fonts/MilkyNice.ttf) format("truetype");
+  url(~static/assets/fonts/MilkyNice.ttf) format("truetype");
 }
 
 html {

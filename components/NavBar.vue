@@ -7,7 +7,7 @@
             class="navbar-heading text-gray-800 dark:text-white text-xl font-bold md:text-2xl hover:text-gray-700 dark:hover:text-gray-300"
             href="#"
             v-scroll-to="'#home'"
-            ><img :src="logo.backgroundImage" class='h-12 sm:h-16' alt="Bakes by Tash"/></a>
+            ><nuxt-img :src="logo.backgroundImage" class='h-12 sm:h-16' alt="Bakes by Tash"/></a>
         </div>
 
         <!-- Mobile menu button -->
@@ -69,7 +69,7 @@ import { Component, Vue } from 'nuxt-property-decorator'
 export default class Header extends Vue {
   menuItemsVisible = false
   logo = {
-    backgroundImage: require('@/assets/logo-pink.png'),
+    backgroundImage: 'assets/logo-pink.png',
   }
 
   mounted() {

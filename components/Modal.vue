@@ -11,7 +11,7 @@ export default class Modal extends Vue {
   firebaseService: FirebaseService = new FirebaseService(this.$fire)
   loading = false
   imageSrc?: any
-  placeholder = require('assets/placeholder.png')
+  placeholder = require(`${process.env.imagePath}/placeholder.png`)
 
   async mounted() {
     if (process.client) {
